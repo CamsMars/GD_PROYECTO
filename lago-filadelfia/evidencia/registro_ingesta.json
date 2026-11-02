@@ -1,0 +1,128 @@
+[
+  {
+    "fuente": "F01",
+    "url": "https://hub.arcgis.com/api/v3/datasets/0960ea0f38f44146bb562f2b212075aa_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+    "fecha": "2026-11-02T14:41:11-05:00",
+    "resultado": "error: HTTPSConnectionPool(host='hub.arcgis.com', port=443): Max retries exceeded with url: /api/v3/datasets/0960ea0f38f44146bb562f2b212075aa_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1 (Caused by NameResolutionError(\"HTTPSConnection(host='hub.arcgis.com', port=443): Failed to resolve 'hub.arcgis.com' ([Errno 11001] getaddrinfo failed)\"))"
+  },
+  {
+    "fuente": "F01",
+    "url": "https://hub.arcgis.com/api/v3/datasets/0960ea0f38f44146bb562f2b212075aa_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+    "fecha": "2026-11-02T14:42:55-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 707816,
+    "sha256": "8ee31e7a04df46c428eec855dcfa1b485fe61e92a7e13b816b1e3822f7060ff3"
+  },
+  {
+    "fuente": "F06",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2024/TRACT/tl_2024_42_tract.zip",
+    "fecha": "2026-11-02T14:43:00-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 13057777,
+    "sha256": "934e5ee0973b2f57359bf43c810b547aacaaee17069bcbbe5b6b610006dcc71b"
+  },
+  {
+    "fuente": "F05",
+    "url": "https://api.census.gov/data/2024/acs/acs5?get=NAME,B01003_001E,B19013_001E&for=tract:*&in=state:42%20county:101&key=***",
+    "fecha": "2026-11-02T15:24:35-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 38110,
+    "sha256": "b0d1caadc029bf6cc6092a7d7f20601071b0dd8ed165730bdad6a2716c8f5b35"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&q=SELECT%20service_name%2C%20COUNT%28%2A%29%20AS%20n%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272020-01-01%27%20AND%20requested_datetime%20%3C%20%272021-01-01%27%20GROUP%20BY%20service_name%20ORDER%20BY%20n%20DESC",
+    "fecha": "2026-11-02T15:24:39-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 1700,
+    "sha256": "ef6fcb6d6b924b46a0687689236fbd0ab918caada1e4c02a9e41cecbe1a0e4dd"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&filename=public_cases_fc&q=SELECT%20service_request_id%2C%20requested_datetime%2C%20closed_datetime%2C%20status%2C%20service_name%2C%20lat%2C%20lon%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272020-01-01%27%20AND%20requested_datetime%20%3C%20%272021-01-01%27%20AND%20service_name%20IN%20%28%27Street%20Defect%27%2C%27Street%20Paving%27%2C%27Cracked%20Street%27%2C%27Traffic%20Signal%20Emergency%27%2C%27SIGNAL%20REQUEST%27%2C%27Stop%20Sign%20Repair%27%2C%27Street%20Light%20Outage%27%29",
+    "fecha": "2026-11-02T15:24:40-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 2904955,
+    "sha256": "5b14bdcff68a489427f3bf060886572d9a2ce5509dfbbd73d64904e0471aa6f5"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&q=SELECT%20service_name%2C%20COUNT%28%2A%29%20AS%20n%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272021-01-01%27%20AND%20requested_datetime%20%3C%20%272022-01-01%27%20GROUP%20BY%20service_name%20ORDER%20BY%20n%20DESC",
+    "fecha": "2026-11-02T15:24:44-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 1205,
+    "sha256": "35ec21eec2ca5b1a26c3e887b2c60e682199e687a7898edc2f923630442243c2"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&filename=public_cases_fc&q=SELECT%20service_request_id%2C%20requested_datetime%2C%20closed_datetime%2C%20status%2C%20service_name%2C%20lat%2C%20lon%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272021-01-01%27%20AND%20requested_datetime%20%3C%20%272022-01-01%27%20AND%20service_name%20IN%20%28%27Street%20Defect%27%2C%27Street%20Paving%27%2C%27Cracked%20Street%27%2C%27Traffic%20Signal%20Emergency%27%2C%27SIGNAL%20REQUEST%27%2C%27Stop%20Sign%20Repair%27%2C%27Street%20Light%20Outage%27%29",
+    "fecha": "2026-11-02T15:24:45-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 4392506,
+    "sha256": "f8b281b0b5e963eb7e858175e987ef2d56d31dbe25b3ceebe90d83edf80aefa2"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&q=SELECT%20service_name%2C%20COUNT%28%2A%29%20AS%20n%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272022-01-01%27%20AND%20requested_datetime%20%3C%20%272023-01-01%27%20GROUP%20BY%20service_name%20ORDER%20BY%20n%20DESC",
+    "fecha": "2026-11-02T15:24:51-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 1346,
+    "sha256": "f3f9ba79115a9eec907c32943f964ab3b1fe9ab118d2474e7efa4b5728a17704"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&filename=public_cases_fc&q=SELECT%20service_request_id%2C%20requested_datetime%2C%20closed_datetime%2C%20status%2C%20service_name%2C%20lat%2C%20lon%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272022-01-01%27%20AND%20requested_datetime%20%3C%20%272023-01-01%27%20AND%20service_name%20IN%20%28%27Street%20Defect%27%2C%27Street%20Paving%27%2C%27Cracked%20Street%27%2C%27Traffic%20Signal%20Emergency%27%2C%27SIGNAL%20REQUEST%27%2C%27Stop%20Sign%20Repair%27%2C%27Street%20Light%20Outage%27%29",
+    "fecha": "2026-11-02T15:24:52-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 4947522,
+    "sha256": "0445195370a1c6ed32aeb394eb2e7bfbedd3d06ae54cb6e60c97e0ea8fd4e02b"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&q=SELECT%20service_name%2C%20COUNT%28%2A%29%20AS%20n%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272023-01-01%27%20AND%20requested_datetime%20%3C%20%272024-01-01%27%20GROUP%20BY%20service_name%20ORDER%20BY%20n%20DESC",
+    "fecha": "2026-11-02T15:24:57-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 1302,
+    "sha256": "60615c8717f09856457b4a8d497b42d5e227b13119c39a221e564def5210cd24"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&filename=public_cases_fc&q=SELECT%20service_request_id%2C%20requested_datetime%2C%20closed_datetime%2C%20status%2C%20service_name%2C%20lat%2C%20lon%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272023-01-01%27%20AND%20requested_datetime%20%3C%20%272024-01-01%27%20AND%20service_name%20IN%20%28%27Street%20Defect%27%2C%27Street%20Paving%27%2C%27Cracked%20Street%27%2C%27Traffic%20Signal%20Emergency%27%2C%27SIGNAL%20REQUEST%27%2C%27Stop%20Sign%20Repair%27%2C%27Street%20Light%20Outage%27%29",
+    "fecha": "2026-11-02T15:24:59-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 3503631,
+    "sha256": "3a428f51960bf032b045370c23e572cff70f94d0f63c5c0c006ddda82eafa3d5"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&q=SELECT%20service_name%2C%20COUNT%28%2A%29%20AS%20n%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272024-01-01%27%20AND%20requested_datetime%20%3C%20%272025-01-01%27%20GROUP%20BY%20service_name%20ORDER%20BY%20n%20DESC",
+    "fecha": "2026-11-02T15:25:03-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 1245,
+    "sha256": "c930f30e0c50ac3574a88c4903137d70194c0556bedfb6bfb45c174dd213402e"
+  },
+  {
+    "fuente": "F02",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&filename=public_cases_fc&q=SELECT%20service_request_id%2C%20requested_datetime%2C%20closed_datetime%2C%20status%2C%20service_name%2C%20lat%2C%20lon%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272024-01-01%27%20AND%20requested_datetime%20%3C%20%272025-01-01%27%20AND%20service_name%20IN%20%28%27Street%20Defect%27%2C%27Street%20Paving%27%2C%27Cracked%20Street%27%2C%27Traffic%20Signal%20Emergency%27%2C%27SIGNAL%20REQUEST%27%2C%27Stop%20Sign%20Repair%27%2C%27Street%20Light%20Outage%27%29",
+    "fecha": "2026-11-02T15:25:04-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 3449700,
+    "sha256": "87e4e05fa7eee95907b6056999dc74f13b688ed4bfeecfbe0951cc078ff0248f"
+  },
+  {
+    "fuente": "F03",
+    "url": "https://hub.arcgis.com/api/v3/datasets/21154a8f1894449f839d2288726e9837_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+    "fecha": "2026-11-02T15:25:13-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 185020799,
+    "sha256": "7254b807862e210c1c00f0e8aaa5f45e425279c25adaf03455adaa63baa1e81d"
+  },
+  {
+    "fuente": "F04",
+    "url": "https://www3.septa.org/developer/gtfs_public.zip",
+    "fecha": "2026-11-02T15:25:29-05:00",
+    "resultado": "HTTP 200",
+    "bytes": 26745416,
+    "sha256": "acff1b8757dd33fd195bd0e2fed75076d4e5be1bda5441c64aa85a259ab22813"
+  }
+]

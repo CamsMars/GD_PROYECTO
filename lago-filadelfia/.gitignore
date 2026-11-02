@@ -1,0 +1,6 @@
+# datos originales (tienen coordenadas e IDs)
+datos_crudos/
+# llave del Census
+.env
+__pycache__/
+.venv/

@@ -1,0 +1,50 @@
+{
+  "periodo": "2020-2024",
+  "generado": "2026-11-02",
+  "P1": {
+    "pregunta": "¿Los distritos con más reportes viales al 311 por cada 1.000 habitantes tienen también más siniestros graves por cada 1.000 habitantes?",
+    "fuentes": [
+      "F02",
+      "F03",
+      "F05",
+      "F06",
+      "F01"
+    ],
+    "rho_spearman": -0.105,
+    "p_valor": 0.677,
+    "n_distritos": 18,
+    "lectura": "relación débil o nula negativa",
+    "nota": "Con 18 distritos la relación describe zonas, no personas, y no prueba causa. La población y el ingreso son aproximaciones (PROXY)."
+  },
+  "P2": {
+    "pregunta": "¿Qué distritos tienen más y menos paraderos de SEPTA por km²?",
+    "fuentes": [
+      "F04",
+      "F01"
+    ],
+    "mas": {
+      "CTR": 48.1,
+      "WST": 41.2,
+      "LNO": 37.4
+    },
+    "menos": {
+      "LSW": 11.9,
+      "LNW": 11.7,
+      "LS": 2.5
+    }
+  },
+  "P3": {
+    "pregunta": "¿Los distritos de menor ingreso tienen mayores tiempos de atención a las solicitudes viales?",
+    "fuentes": [
+      "F02",
+      "F05",
+      "F06",
+      "F01"
+    ],
+    "rho_spearman": 0.191,
+    "p_valor": 0.447,
+    "n_distritos": 18,
+    "lectura": "relación débil o nula positiva",
+    "nota": "Con 18 distritos la relación describe zonas, no personas, y no prueba causa. La población y el ingreso son aproximaciones (PROXY). Si la relación es negativa, a menor ingreso más días de atención."
+  }
+}

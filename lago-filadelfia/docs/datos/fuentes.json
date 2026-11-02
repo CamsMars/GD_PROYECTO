@@ -1,0 +1,50 @@
+{
+  "F01": {
+    "nombre": "Planning Districts",
+    "publica": "City of Philadelphia",
+    "licencia": "City of Philadelphia License",
+    "periodo": "Vigente (límites Philadelphia2035)",
+    "actualizacion": "Única vez",
+    "fecha_prueba": "2026-11-02"
+  },
+  "F02": {
+    "nombre": "311 Service and Information Requests",
+    "publica": "Philly311 / City of Philadelphia",
+    "licencia": "City of Philadelphia License",
+    "periodo": "2014-12-08 a la fecha (en el lago: 2020-01-01 a 2024-12-31)",
+    "actualizacion": "Diaria",
+    "fecha_prueba": "2026-11-02"
+  },
+  "F03": {
+    "nombre": "Crashes Data",
+    "publica": "PennDOT / City of Philadelphia",
+    "licencia": "City of Philadelphia License",
+    "periodo": "2020-2024",
+    "actualizacion": "Anual",
+    "fecha_prueba": "2026-11-02"
+  },
+  "F04": {
+    "nombre": "SEPTA GTFS Developer Download",
+    "publica": "SEPTA",
+    "licencia": "SEPTA LICENSE AGREEMENT",
+    "periodo": "Vigente (feed actual)",
+    "actualizacion": "Trimestral",
+    "fecha_prueba": "2026-11-02"
+  },
+  "F05": {
+    "nombre": "American Community Survey 5-Year",
+    "publica": "U.S. Census Bureau",
+    "licencia": "Dominio público de EE. UU. (obra del gobierno federal, 17 U.S.C. § 105). La fuente no publica texto de licencia.",
+    "periodo": "2020-2024",
+    "actualizacion": "Anual",
+    "fecha_prueba": "2026-11-02"
+  },
+  "F06": {
+    "nombre": "TIGER/Line Shapefiles 2024 · Census Tracts (Pensilvania)",
+    "publica": "U.S. Census Bureau",
+    "licencia": "The TIGER/Line Shapefile products are not copyrighted however TIGER/Line and Census TIGER are registered trademarks of the U.S. Census Bureau. These products are free to use in a product or publication, however acknowledgement must be given to the U.S. Census Bureau as the source.",
+    "periodo": "Edición 2024 (límites de 2020)",
+    "actualizacion": "Anual",
+    "fecha_prueba": "2026-11-02"
+  }
+}

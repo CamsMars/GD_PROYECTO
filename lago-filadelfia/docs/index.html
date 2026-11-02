@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movilidad y vías en Filadelfia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<header>
+  <h1>Movilidad y vías en Filadelfia</h1>
+  <p class="sub">Indicadores por distrito de planeación (Planning Districts), 2020-2024</p>
+  <p class="grupo">Camila Martínez, Miguel Gómez, Sebastián Castaño y David Restrepo<br>
+    Tópicos de Sistemas de Información, Universidad EAFIT</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>Mapa por distrito</h2>
+    <label for="indicador">Indicador</label>
+    <select id="indicador"></select>
+    <p id="desc-indicador" class="nota"></p>
+    <div id="mapa"></div>
+    <div id="leyenda"></div>
+    <div id="ficha" class="ficha">
+      <p class="nota">Toque un distrito en el mapa para ver sus datos.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Preguntas del sistema</h2>
+    <p class="nota">Todas las cifras usan el mismo periodo, 2020-2024, en el 311, los siniestros y el censo.
+      Con 18 distritos los resultados describen zonas, no personas, y una relación no prueba causa.</p>
+
+    <article id="p1" class="pregunta"></article>
+    <article id="p2" class="pregunta"></article>
+    <article id="p3" class="pregunta"></article>
+  </section>
+
+  <section>
+    <h2>Lo que queda pendiente</h2>
+    <ul>
+      <li><strong>Riesgo por volumen de tráfico.</strong> Las tasas son por habitante, no por vehículos que circulan.
+        Para calcular siniestros por vehículo-kilómetro faltan los conteos de tráfico (PennDOT o DVRPC), que no integramos.</li>
+      <li><strong>Seguridad vial cerca de colegios.</strong> No se puede responder: la lista de colegios (F12) no tiene
+        licencia abierta y su enlace no respondió.</li>
+      <li><strong>Causas.</strong> El sistema muestra si dos indicadores se mueven juntos entre distritos,
+        pero no explica por qué.</li>
+      <li><strong>Datos de 2025 y 2026.</strong> Quedan por fuera para mantener el mismo periodo del censo (ACS 2020-2024).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Cómo protegemos a las personas</h2>
+    <p>Ninguna cifra de esta página identifica a nadie. Las solicitudes al 311 y los siniestros se ubicaron
+      en su distrito y después se borraron las coordenadas, las direcciones, el texto libre y los números de registro.
+      La consulta al 311 ni siquiera descarga direcciones ni comentarios. Aquí solo se publican totales por distrito.</p>
+    <p><span class="proxy">PROXY</span> La población y el ingreso son aproximaciones: cada census tract se asignó
+      completo al distrito donde queda su punto interno, sin repartir los que cruzan un límite, y el ingreso es un
+      promedio de las medianas de los tracts ponderado por población, no la mediana real del distrito.</p>
+  </section>
+
+  <section>
+    <h2>Fuentes</h2>
+    <div class="tabla-scroll">
+      <table id="tabla-fuentes">
+        <thead><tr><th>ID</th><th>Fuente</th><th>Publica</th><th>Licencia</th><th>Periodo</th><th>Probada</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Camila Martínez, Miguel Gómez, Sebastián Castaño y David Restrepo. Universidad EAFIT, 2026.</p>
+  <p>This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.</p>
+</footer>
+
+<dialog id="dialogo-fuente">
+  <div id="contenido-fuente"></div>
+  <button id="cerrar-fuente">Cerrar</button>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
