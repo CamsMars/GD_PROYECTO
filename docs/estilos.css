@@ -83,16 +83,16 @@ section.card {
 .mapa-leyenda {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 20px;
-  padding: 14px 18px;
+  gap: 12px 24px;
+  padding: 20px 26px;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: .86rem;
 }
 .mapa-leyenda span { display: inline-flex; align-items: center; gap: 7px; }
 
-.panel-preguntas { padding: 24px; }
-.pregunta { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.panel-preguntas { padding: 32px; }
+.pregunta { padding: 20px 4px; border-bottom: 1px solid var(--line); }
 .pregunta:first-child { padding-top: 0; }
 .pregunta:last-child { border-bottom: 0; padding-bottom: 0; }
 .pregunta h3 { margin: 0 0 10px; font-size: 1rem; }
@@ -132,7 +132,7 @@ button:active { transform: translateY(0); }
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
 }
-.grafica-container { min-width: 0; overflow: hidden; padding: 18px; }
+.grafica-container { min-width: 0; overflow: hidden; padding: 28px; }
 .grafica-container h3 { margin: 0 0 12px; font-size: 1rem; }
 .grafico, .grafica-container svg, canvas {
   display: block;
@@ -156,8 +156,8 @@ footer {
   main { width: min(100% - 28px, 1100px); padding-top: 28px; padding-bottom: 56px; }
   section { margin-bottom: 34px; }
   #mapa { height: 360px; min-height: 0; }
-  .panel-preguntas { padding: 18px; }
+  .panel-preguntas { padding: 24px 20px; }
   .graficas, .graficos, .graficas-grid { grid-template-columns: 1fr; }
-  .grafica-container { padding: 14px; }
+  .grafica-container { padding: 22px 18px; }
   .mapa-leyenda { gap: 8px 14px; font-size: .8rem; }
 }
