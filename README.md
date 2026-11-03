@@ -207,3 +207,21 @@ El repositorio público contiene tablas con filas de solicitudes y siniestros si
 La selección de Philly311 se aplica a timestamps UTC de 2020–2024. Después se convierten las fechas a America/New_York: tres solicitudes quedan con fecha local 2019-12-31. Se conservan y se documentan, sin modificar artificialmente sus fechas. La cobertura no equivale exactamente a cinco años calendario locales.
 
 En F05 el Excel copia literalmente el enlace declarado en el campo `license` del metadato oficial de la API. La explicación de dominio público federal se conserva por separado. No son una cita literal y una interpretación jurídica intercambiables.
+
+
+## Fondo del mapa y tamaños de pantalla
+
+La interfaz usa el mapa estándar de OpenStreetMap desde
+`https://tile.openstreetmap.org/{z}/{x}/{y}.png`, sin clave de API.
+La atribución de OpenStreetMap permanece visible en el mapa. El navegador conserva
+su caché normal y la aplicación no ofrece descargas masivas ni mapas sin conexión.
+Política del servicio: https://operations.osmfoundation.org/policies/tiles/.
+
+El título se limita a 36 px en escritorio y 24 px en pantallas estrechas.
+Las tarjetas y las tablas se contienen en el ancho de la página; las tablas
+tienen desplazamiento horizontal propio cuando lo necesitan.
+
+La versión se comprobó en navegador con anchos de 320, 390, 768 y 1440 px:
+sin desbordamiento de la página, mapa base cargado y atribuido, 18 distritos,
+selector de indicadores, ficha de distrito y apertura/cierre de Fuente operativos.
+La prueba de ancho móvil es una emulación de navegador, no una prueba en un teléfono físico.

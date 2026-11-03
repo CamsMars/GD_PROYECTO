@@ -32,3 +32,26 @@ Fecha de revisión: 2026-11-02. Base: commit `6d7e150` de CamsMars/GD_PROYECTO.
 - Publicación en GitHub y Vercel: la conexión local de GitHub no tiene una credencial válida. Los cambios están preparados localmente; aún no aparecen en la web remota.
 
 El repositorio sigue conteniendo registros individuales sin identificadores directos. La web muestra agregados. Este trabajo no certifica anonimato ni reconstrucción idéntica después de descargar fuentes cambiantes.
+
+
+## Actualización posterior: mapa y tamaños de pantalla
+
+Se sustituyó CARTO por el mapa estándar de OpenStreetMap sin clave, conservando
+la atribución visible y el almacenamiento normal en caché del navegador.
+El título de escritorio pasó de un máximo de 72 px a 36 px; en móvil es de 24 px.
+También se contuvo el ancho mínimo de las tarjetas para que las tablas no
+ensanchen la página, y se recuperaron los estilos de leyenda, fichas y barras
+al integrar el diseño remoto con las correcciones de esta entrega.
+
+Pruebas locales realizadas en navegador:
+
+- Anchos 320, 390, 768 y 1440 px: ancho del documento igual al de la vista.
+- Fondo OpenStreetMap: imágenes cargadas y atribución visible.
+- 18 polígonos interactivos; selección de distrito muestra su ficha.
+- Cambio de indicador a paraderos y apertura/cierre de Fuente correctos;
+  la ventana contiene F04/F01, enlaces, licencia, periodo y fecha.
+- Sin errores de consola detectados durante estas interacciones.
+
+Esto sustituye el pendiente anterior por falta de una sesión de navegador.
+La prueba es una emulación de tamaños móviles; no se atribuye una prueba con
+un teléfono físico ni una nueva comparación con Streamlit.
