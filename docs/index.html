@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Movilidad y vías en Filadelfia</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="estilos.css?v=mapa-osm-1">
+  <link rel="stylesheet" href="estilos.css?v=tabla-fuentes-2">
 </head>
 <body>
 
@@ -64,10 +64,19 @@
   </section>
 
   <section>
-    <h2>Fuentes</h2>
-    <div class="tabla-scroll">
+    <h2 id="titulo-fuentes">Fuentes</h2>
+    <p class="tabla-ayuda">Desliza la tabla hacia los lados para ver todas las columnas.</p>
+    <div class="tabla-scroll" role="region" aria-labelledby="titulo-fuentes" tabindex="0">
       <table id="tabla-fuentes">
-        <thead><tr><th>ID</th><th>Fuente</th><th>Publica</th><th>Licencia</th><th>Periodo</th><th>Probada</th></tr></thead>
+        <colgroup>
+          <col class="col-id">
+          <col class="col-fuente">
+          <col class="col-publica">
+          <col class="col-licencia">
+          <col class="col-periodo">
+          <col class="col-prueba">
+        </colgroup>
+        <thead><tr><th scope="col">ID</th><th scope="col">Fuente</th><th scope="col">Publica</th><th scope="col">Licencia</th><th scope="col">Periodo</th><th scope="col">Probada</th></tr></thead>
         <tbody></tbody>
       </table>
     </div>

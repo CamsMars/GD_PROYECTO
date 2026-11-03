@@ -72,7 +72,7 @@ li::marker { color: var(--blue); }
 .tabla-scroll { max-width: 100%; overflow-x: auto; }
 table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: .85rem; }
 th { color: var(--muted); background: var(--soft); font-size: .76rem; text-align: left; text-transform: uppercase; letter-spacing: .05em; }
-th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: break-word; word-break: normal; }
 tbody tr:hover { background: var(--blue-soft); }
 button { padding: 9px 14px; color: var(--blue); background: #fff; border: 1px solid #b8c9ee; border-radius: 7px; font: inherit; font-weight: 600; cursor: pointer; }
 button:hover { background: var(--blue-soft); }
@@ -111,4 +111,23 @@ dialog .bloque { margin-bottom: 16px; }
   .grupo { margin-top: 10px; font-size: .8rem; }
   .barra .nombre { flex-basis: 100px; }
   .pregunta { padding: 14px; }
+}
+
+
+/* Anchos estables: las licencias largas no deben comprimir IDs, entidades ni fechas. */
+#tabla-fuentes { table-layout: fixed; min-width: 960px; line-height: 1.5; }
+#tabla-fuentes .col-id { width: 6%; }
+#tabla-fuentes .col-fuente { width: 21%; }
+#tabla-fuentes .col-publica { width: 16%; }
+#tabla-fuentes .col-licencia { width: 25%; }
+#tabla-fuentes .col-periodo { width: 19%; }
+#tabla-fuentes .col-prueba { width: 13%; }
+#tabla-fuentes th { white-space: nowrap; }
+#tabla-fuentes td:first-child,
+#tabla-fuentes td:last-child { white-space: nowrap; overflow-wrap: normal; font-variant-numeric: tabular-nums; }
+#tabla-fuentes a { color: var(--blue); text-underline-offset: 3px; }
+.tabla-ayuda { display: none; }
+.tabla-scroll:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+@media (max-width: 1040px) {
+  .tabla-ayuda { display: block; margin: 0 0 12px; font-size: .85rem; color: var(--muted); }
 }
