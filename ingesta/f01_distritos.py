@@ -1,5 +1,4 @@
-# F01 - Planning Districts
-# Descarga los 18 distritos, calcula el area en km2 y guarda lago/territorio_distritos.geojson
+# Descarga distritos y calculo area en km2
 
 import sys
 from pathlib import Path
@@ -14,7 +13,6 @@ crudo = descargar(config.URL_F01, config.CRUDOS / "f01_planning_districts.geojso
 gdf = gpd.read_file(crudo).to_crs(config.CRS_GEO)
 gdf.columns = [c if c == "geometry" else c.strip().lower() for c in gdf.columns]
 
-# usamos abbrev como llave porque objectid se salta el 10
 gdf = gdf.rename(columns={"abbrev": "distrito_id", "dist_name": "nombre_distrito"})
 gdf["distrito_id"] = gdf["distrito_id"].str.strip()
 gdf["nombre_distrito"] = gdf["nombre_distrito"].str.strip()
@@ -24,7 +22,6 @@ if set(gdf["distrito_id"]) != set(config.DISTRITOS):
 
 gdf["geometry"] = gdf.geometry.make_valid()
 
-# area calculada en EPSG:2272 (Shape__Area esta en Web Mercator y da areas mas grandes)
 gdf["area_km2"] = (gdf.to_crs(config.CRS_AREA).area * config.PIES2_A_KM2).round(3)
 
 salida = gdf[["distrito_id", "nombre_distrito", "area_km2", "geometry"]].sort_values("distrito_id")

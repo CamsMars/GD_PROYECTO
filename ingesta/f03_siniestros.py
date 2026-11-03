@@ -1,6 +1,4 @@
-# F03 - Crashes Data (PennDOT)
-# Siniestros 2020-2024 ubicados por distrito. Se quitan el crn y las coordenadas
-# antes de guardar lago/siniestralidad_vial.csv
+# Siniestros 2020-2024 ubicados por distrito. Se quita el crn y las coordenadas
 
 import json
 import sys
@@ -14,7 +12,6 @@ from ingesta.comun import asignar_distrito, descargar, guardar_csv
 
 crudo = descargar(config.URL_F03, config.CRUDOS / "f03_crashes.geojson", "F03", timeout=900)
 
-# solo leemos las propiedades; las coordenadas estan en dec_latitude y dec_longitude
 with open(crudo, encoding="utf-8") as f:
     df = pd.DataFrame([feat["properties"] for feat in json.load(f)["features"]])
 df.columns = [c.lower() for c in df.columns]
@@ -23,7 +20,6 @@ total = len(df)
 df = df.drop_duplicates(subset="crn")
 print(f"  siniestros: {total}, duplicados quitados: {total - len(df)}")
 
-# vienen como decimales, los pasamos a entero
 df["anio_accidente"] = pd.to_numeric(df["crash_year"], errors="coerce").astype("Int64")
 df = df[df["anio_accidente"].between(config.ANIO_INICIO, config.ANIO_FIN)]
 df["fallecidos_conteo"] = pd.to_numeric(df["fatal_count"], errors="coerce").fillna(0).astype(int)

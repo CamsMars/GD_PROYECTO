@@ -1,7 +1,4 @@
-# F05 - American Community Survey 5 anios (2020-2024)
-# Poblacion e ingreso mediano del hogar por tract, agregados por distrito.
-# Necesita la llave del Census en el archivo .env (CENSUS_API_KEY=...)
-# Correr despues de f01 y f06
+# Censo población
 
 import json
 import sys
@@ -23,7 +20,6 @@ filas = json.loads(Path(crudo).read_text(encoding="utf-8"))
 df = pd.DataFrame(filas[1:], columns=filas[0])
 df["tract_geoid"] = df["state"] + df["county"] + df["tract"]
 
-# los valores negativos (como -666666666) significan que no hay dato
 for col in ["B01003_001E", "B19013_001E"]:
     df[col] = pd.to_numeric(df[col], errors="coerce")
     df.loc[df[col] < 0, col] = None
@@ -35,7 +31,6 @@ df = df.merge(puente, on="tract_geoid", how="inner")
 resultado = []
 for distrito, g in df.groupby("distrito_id"):
     poblacion = g["B01003_001E"].sum()
-    # proxy del ingreso: promedio de las medianas de los tracts ponderado por poblacion
     con_ingreso = g.dropna(subset=["B19013_001E"])
     peso = con_ingreso["B01003_001E"].sum()
     ingreso = (con_ingreso["B19013_001E"] * con_ingreso["B01003_001E"]).sum() / peso if peso > 0 else None

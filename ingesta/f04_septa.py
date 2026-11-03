@@ -1,6 +1,4 @@
-# F04 - SEPTA GTFS
-# El zip trae adentro google_bus.zip y google_rail.zip. Leemos stops.txt de cada uno
-# y guardamos lago/paraderos_septa.csv solo con los paraderos de Filadelfia
+# SEPTA GTFS
 
 import io
 import sys
@@ -18,7 +16,7 @@ def leer_paraderos(zip_principal, nombre, red):
     with zipfile.ZipFile(io.BytesIO(zip_principal.read(nombre))) as z:
         stops = pd.read_csv(z.open("stops.txt"), dtype=str, encoding="utf-8-sig")
     stops.columns = [c.strip() for c in stops.columns]
-    # quitamos las estaciones padre (location_type = 1) para no contar dos veces
+    
     if "location_type" in stops.columns:
         stops = stops[stops["location_type"].fillna("0").replace("", "0") == "0"]
     stops["paradero_id"] = red + "_" + stops["stop_id"].str.strip()

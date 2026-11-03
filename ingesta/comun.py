@@ -1,4 +1,4 @@
-# Funciones que usan todos los scripts de ingesta
+# Funciones comunes para la ingesta de datos
 
 import hashlib
 import json
@@ -74,7 +74,6 @@ def leer_distritos():
 
 
 def asignar_distrito(df, col_lat, col_lon):
-    # Cruza las coordenadas con los distritos de F01. Despues de esto las coordenadas se borran
     import geopandas as gpd
     import pandas as pd
 
@@ -83,5 +82,5 @@ def asignar_distrito(df, col_lat, col_lon):
     puntos = gpd.GeoDataFrame(index=df.index, geometry=gpd.points_from_xy(lon, lat), crs=config.CRS_GEO)
     puntos = puntos[lat.notna() & lon.notna()]
     cruce = gpd.sjoin(puntos, leer_distritos()[["distrito_id", "geometry"]], how="left", predicate="within")
-    cruce = cruce[~cruce.index.duplicated(keep="first")]  # puntos en el borde de dos distritos
+    cruce = cruce[~cruce.index.duplicated(keep="first")]  
     return cruce["distrito_id"].reindex(df.index)

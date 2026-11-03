@@ -33,7 +33,6 @@ n_paraderos = paraderos.groupby("distrito_id").size()
 cerradas = reportes[reportes["estado"] == "Closed"]
 
 ind = pd.DataFrame(index=pd.Index(config.DISTRITOS, name="distrito_id"))
-# promedio por anio por cada 1.000 habitantes
 ind["reportes_viales_x1000hab"] = n_reportes / config.N_ANIOS / poblacion * 1000
 ind["siniestros_graves_x1000hab"] = n_graves / config.N_ANIOS / poblacion * 1000
 ind["paraderos_x_km2"] = n_paraderos.reindex(ind.index).fillna(0) / area
@@ -84,7 +83,6 @@ preguntas = {
            "nota": nota + " Si la relación es negativa, a menor ingreso más días de atención."},
 }
 
-# Metadatos de las fuentes: catalogo del Excel + fecha real de la ultima descarga
 ultima_descarga = {}
 registro = config.EVIDENCIA / "registro_ingesta.json"
 if registro.exists():
@@ -106,7 +104,7 @@ for fid in ["F01", "F02", "F03", "F04", "F05", "F06"]:
     fuentes[fid] = catalogo.get(fid, {})
     fuentes[fid]["fecha_prueba"] = ultima_descarga.get(fid, "sin registro")
 
-# Archivos para la web (geometria simplificada para que cargue rapido en el celular)
+# Archivos para la web
 web = distritos.merge(demografia, on="distrito_id", how="left").merge(ind, on="distrito_id")
 web["geometry"] = web.geometry.simplify(0.0002, preserve_topology=True)
 web.to_file(WEB / "distritos.geojson", driver="GeoJSON", COORDINATE_PRECISION=5)

@@ -1,7 +1,4 @@
-# F06 - TIGER/Line 2024, census tracts de Pensilvania
-# El censo (F05) no trae mapa, entonces usamos el punto interno de cada tract
-# para saber en que distrito queda. Guarda lago/tracts_distritos.csv
-# Correr despues de f01
+# Tracts de Filadelfia y su distrito correspondiente. Se asigna cada tract completo a un solo distrito
 
 import sys
 from pathlib import Path
@@ -14,7 +11,7 @@ from ingesta.comun import asignar_distrito, descargar, guardar_csv
 
 crudo = descargar(config.URL_F06, config.CRUDOS / "f06_tl_2024_42_tract.zip", "F06", timeout=900)
 tracts = gpd.read_file(crudo)
-tracts = tracts[tracts["COUNTYFP"] == "101"].copy()  # 101 = Filadelfia
+tracts = tracts[tracts["COUNTYFP"] == "101"].copy() 
 print(f"  tracts de Filadelfia: {len(tracts)}")
 
 # cada tract se asigna completo a un solo distrito (no se reparte si cruza el borde)

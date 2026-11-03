@@ -1,6 +1,4 @@
 # Corre todos los scripts en orden
-#   python armar_lago.py               descarga todo
-#   python armar_lago.py --usar-cache  usa lo que ya esta en datos_crudos/
 
 import subprocess
 import sys
@@ -8,8 +6,8 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent
 PASOS = [
-    "ingesta/f01_distritos.py",   # primero, porque los demas usan los distritos
-    "ingesta/f06_tracts.py",      # antes de f05
+    "ingesta/f01_distritos.py",   
+    "ingesta/f06_tracts.py",      
     "ingesta/f05_censo.py",
     "ingesta/f02_311.py",
     "ingesta/f03_siniestros.py",

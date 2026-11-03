@@ -1,5 +1,4 @@
-# Revisa que en lo que publicamos (lago/ y web/datos/) no haya coordenadas,
-# direcciones, texto libre ni IDs de registro. Si encuentra algo, termina con error.
+# Revisa que no haya información privada en los archivos que se publican en la web
 
 import json
 import sys
