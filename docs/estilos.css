@@ -23,9 +23,10 @@ body {
 ::selection { background: #b8e4e8; color: var(--ink); }
 
 header {
-  color: white;
-  padding: clamp(32px, 7vw, 72px) 20px 56px;
-  background: radial-gradient(circle at 85% 15%, rgba(245,185,76,.25), transparent 28%), linear-gradient(135deg, #0b5366 0%, #147d92 58%, #42a6a6 100%);
+  color: var(--ink);
+  padding: clamp(32px, 7vw, 56px) 20px 44px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
 }
 
 header h1 {
@@ -42,8 +43,8 @@ header .sub, header .grupo {
   margin-right: auto;
 }
 
-header .sub { margin-top: 0; font-size: 1.05rem; opacity: .92; }
-header .grupo { margin-top: 24px; font-size: .82rem; opacity: .78; }
+header .sub { margin-top: 0; max-width: 720px; font-size: 1.05rem; color: var(--muted); }
+header .grupo { margin-top: 20px; font-size: .82rem; color: var(--muted); }
 
 main {
   max-width: 1020px;
@@ -86,14 +87,18 @@ label {
 
 select {
   width: 100%;
-  padding: 12px 14px;
+  padding: 13px 42px 13px 14px;
   font: inherit;
   color: var(--ink);
   background: #f8fbfc;
   border: 1px solid var(--line);
   border-radius: 10px;
   cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
+
+select:hover { border-color: #8bc5cb; background: #fff; }
+select:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(20,125,146,.13); }
 
 select:focus, button:focus-visible, dialog:focus-visible {
   outline: 3px solid rgba(245,185,76,.55);
@@ -104,9 +109,15 @@ select:focus, button:focus-visible, dialog:focus-visible {
   height: 460px;
   margin-top: 16px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+  box-shadow: 0 14px 30px rgba(23,43,77,.10), inset 0 0 0 1px rgba(255,255,255,.5);
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+
+#mapa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(23,43,77,.14), inset 0 0 0 1px rgba(255,255,255,.55);
 }
 
 #leyenda {
@@ -241,8 +252,13 @@ th, td {
 }
 
 th {
-  background: #eef2f6;
+  background: #e8f1f3;
+  color: var(--brand-dark);
+  font-weight: 700;
 }
+
+tbody tr:nth-child(even) { background: #f8fbfc; }
+tbody tr:hover { background: #eef8f8; }
 
 dialog {
   max-width: 420px;
@@ -279,3 +295,4 @@ footer {
 .leaflet-interactive:focus {
   outline: none;
 }
+
