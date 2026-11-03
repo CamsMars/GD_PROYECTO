@@ -38,7 +38,7 @@
   "F05": {
     "nombre": "American Community Survey 5-Year",
     "publica": "U.S. Census Bureau",
-    "licencia": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "licencia": "Dominio público federal de EE. UU. (17 U.S.C. §105)",
     "periodo": "2020-2024",
     "actualizacion": "Anual",
     "url": "https://api.census.gov/data/2024/acs/acs5?get=NAME,B01003_001E,B19013_001E&for=tract:*&in=state:42%20county:101",
