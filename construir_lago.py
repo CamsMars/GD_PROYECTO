@@ -103,6 +103,8 @@ fuentes = {}
 for fid in ["F01", "F02", "F03", "F04", "F05", "F06"]:
     fuentes[fid] = catalogo.get(fid, {})
     fuentes[fid]["fecha_prueba"] = ultima_descarga.get(fid, "sin registro")
+    if fid == "F05":
+        fuentes[fid]["url_publica"] = config.URL_F05_FICHA
 
 # Archivos para la web
 web = distritos.merge(demografia, on="distrito_id", how="left").merge(ind, on="distrito_id")

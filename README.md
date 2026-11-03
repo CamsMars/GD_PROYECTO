@@ -4,7 +4,7 @@
 
 **Repositorio:** https://github.com/CamsMars/GD_PROYECTO  
 **Aplicación:** https://gd-proyecto-v6.vercel.app  
-**Revisado:** 2026-11-02
+**Revisado:** 2026-11-03
 
 ## Para quién y qué pregunta
 
@@ -16,13 +16,13 @@ Este proyecto busca organizar información pública de la ciudad de Filadelfia p
   2. ¿Qué distritos tienen la mayor y la menor densidad de paraderos de SEPTA por kilómetro cuadrado?
   3. ¿Los distritos con menores ingresos tienen mayores tiempos de respuesta a los reportes viales de Philly311?
 - **Escala y comparación:** trabajamos con los 18 distritos de planificación de Filadelfia. Para hacer las comparaciones, agregamos la información de las fuentes a esta escala territorial. Algunas preguntas utilizan tasas por habitante y otras indicadores por kilómetro cuadrado o medidas de ingreso.
-- **Lo que decidimos no mostrar, y por qué:** no publicamos coordenadas exactas, direcciones, descripciones de texto libre ni identificadores que pudieran permitir reconocer a una persona o una solicitud específica. El objetivo del sistema es comparar información territorial, por lo que no necesitamos exponer registros individuales. Tampoco presentamos las relaciones estadísticas como si demostraran una causa: los resultados permiten identificar patrones, pero no explicar por sí solos por qué ocurren.
+- **Lo que decidimos no mostrar, y por qué:** en la aplicación no mostramos coordenadas exactas, direcciones, descripciones de texto libre ni identificadores que pudieran permitir reconocer a una persona o una solicitud específica. El objetivo del sistema es comparar información territorial, por lo que no necesitamos exponer registros individuales. Tampoco presentamos las relaciones estadísticas como si demostraran una causa: los resultados permiten identificar patrones, pero no explicar por sí solos por qué ocurren.
 
 ## La réplica
 
 Tomamos como referencia el proyecto de ejemplo y conservamos su idea principal: integrar fuentes distintas mediante una arquitectura por capas y organizar los resultados para que puedan consultarse desde una interfaz. Sin embargo, no todas las fuentes de Filadelfia estaban disponibles de la misma manera, así que tuvimos que adaptar los procesos de consulta y descarga.
 
-La arquitectura quedó organizada en tres capas: **Bronze, Silver y Gold**. En Bronze almacenamos los datos obtenidos de las fuentes; en Silver realizamos la limpieza, transformación y preparación de la información; y en Gold dejamos los datos agregados que utiliza la aplicación. Esta separación nos permitió trabajar con las fuentes por separado y después integrar los resultados sin mezclar los datos originales con los indicadores finales.
+Las capas son conceptuales: los originales se descargan en `datos_crudos/` (Bronze, excluida de Git); `lago/` conserva tablas limpias de detalle y tablas agregadas (Silver y Gold); `docs/datos/` contiene la instantánea agregada que publica la web. Los datos de detalle del lago público no conservan identificadores directos de personas, pero no deben confundirse con los agregados de la interfaz.
 
 Algunas de las adaptaciones más importantes fueron:
 
@@ -51,45 +51,40 @@ La posibilidad de utilizar cada fuente depende de las condiciones establecidas p
 | F06 · TIGER/Line | Dominio público federal de Estados Unidos (17 U.S.C. §105) | No aplica a los datos geográficos publicados | Integrada | Datos geográficos públicos |
 | F12 · Fuente escolar | Licencia no suficientemente clara | Información relacionada con instituciones educativas | Descartada | Problemas de disponibilidad y falta de claridad sobre las condiciones de uso |
 
-La licencia de los datos no debe confundirse con la de las herramientas utilizadas para construir el sistema. Para la interfaz usamos HTML, JavaScript nativo y Leaflet.js, esta última bajo licencia BSD-2-Clause ([texto oficial de Leaflet 1.9.4](https://github.com/Leaflet/Leaflet/blob/v1.9.4/LICENSE)). Durante el desarrollo también evaluamos Streamlit, que utiliza licencia Apache 2.0, pero finalmente no fue la herramienta elegida para la versión publicada.
+La licencia de los datos no debe confundirse con la de las herramientas utilizadas para construir el sistema. Para la interfaz usamos HTML, JavaScript nativo y Leaflet.js, esta última bajo licencia BSD-2-Clause ([texto oficial de Leaflet 1.9.4](https://github.com/Leaflet/Leaflet/blob/v1.9.4/LICENSE)). Streamlit (Apache-2.0) se ejecutó como alternativa en una comparación nueva de cierre de la entrega, registrada el 2026-11-03. No se atribuye esta prueba a la fase histórica de desarrollo.
 
 ## Bitácora de exploración
 
-Durante el desarrollo probamos distintas formas de obtener, transformar y presentar la información. No todas funcionaron desde el primer intento. Esta tabla recoge los principales tramos del proceso y qué aprendimos de cada uno.
+Las siguientes pruebas nuevas se realizaron para reevaluar y ratificar las decisiones de la entrega. En cada par se usaron los mismos archivos o URL y los mismos criterios. No se les atribuye una fecha histórica anterior.
+
+Comando reproducible: `python exploracion/comparar.py` después de instalar `requirements-exploracion.txt`. El registro del 2026-11-03 está en [resultados](evidencia/exploracion_2026-11-03/resultados.json), [salida](evidencia/exploracion_2026-11-03/ejecucion.txt) y [pruebas de navegador](evidencia/exploracion_2026-11-03/navegador.json). Los pasos completos y licencias están en [exploracion/README.md](exploracion/README.md).
 
 | Tramo | Herramienta | Qué pidió para empezar | Licencia | Dónde quedan los datos | ¿Se rehace con un comando? | Estado del proyecto | Qué resolvió | Qué no pudo | ¿Quedó? ¿Por qué? |
 |---|---|---|---|---|---|---|---|---|---|
-| F01 · Distritos | Fuente de datos de Filadelfia y proceso de ingesta | Consulta de los límites de los distritos | City of Philadelphia License | Lago de datos | Sí, mediante el proceso de construcción del lago | Integrada | Define las 18 unidades territoriales de análisis | No resuelve por sí sola las diferencias entre las demás fuentes | Sí, porque permite utilizar una escala territorial común |
-| F02 · Philly311 | API de Carto SQL | Consulta a la API y selección de los reportes viales | City of Philadelphia License | Lago de datos | Sí | Integrada | Permite analizar las solicitudes de servicio relacionadas con problemas viales | No permite explicar por sí sola las causas de los reportes ni las diferencias en los tiempos de atención | Sí, porque aporta información para las preguntas 1 y 3 |
-| F03 · Accidentes | Fuente de registros de siniestros viales | Descarga y transformación de los registros | City of Philadelphia License | Lago de datos | Sí | Integrada | Permite comparar la accidentalidad entre distritos | No representa directamente el volumen de tráfico que circula por cada zona | Sí, porque permite construir el indicador de siniestralidad |
-| F04 · SEPTA | Archivos GTFS | Descarga y procesamiento de los archivos comprimidos | SEPTA License Agreement | Lago de datos | Sí | Integrada | Permite identificar y contar los paraderos del sistema de transporte | No describe por sí sola la frecuencia o calidad del servicio | Sí, porque permite calcular la densidad de paraderos |
-| F05 · ACS | API REST del U.S. Census Bureau | Consulta a la API y variable `CENSUS_API_KEY` | Dominio público federal | Lago de datos | Sí | Integrada | Aporta información demográfica y socioeconómica | Los datos agregados no representan todas las características de cada persona | Sí, porque permite contextualizar los indicadores por distrito |
-| F06 · TIGER/Line | Shapefiles de Pensilvania 2024 | Descarga y procesamiento de información geográfica | Dominio público federal | Lago de datos | Sí | Integrada | Permite relacionar información geográfica y territorial | No aporta por sí sola indicadores sociales o de movilidad | Sí, porque facilita las relaciones espaciales |
-| F12 · Fuente escolar | Consulta a la fuente | Acceso al servidor y revisión de sus condiciones de uso | No suficientemente clara | No se incorporó al lago | No aplica | Descartada | Permitió identificar una posible fuente adicional | Los tiempos de espera y la falta de claridad sobre la licencia impidieron integrarla | No, porque no cumplía las condiciones necesarias para incorporarla |
+| Rastreo e ingesta HTTP de muestra | Requests | Las mismas siete URL y un límite de 4.096 bytes por respuesta | Apache-2.0 | Memoria local; solo estados, tipos y hashes en la evidencia | Sí: `python exploracion/comparar.py` | Ejecutada | Seis recursos y la ficha pública de F05 comprobados; identifica la redirección de la API sin clave | La muestra no reconstruye las seis fuentes completas | Sí; mantiene el cliente de ingesta ya usado por el proyecto |
+| Rastreo e ingesta HTTP de muestra | urllib | Las mismas URL y el mismo límite | PSF-2.0 (Python) | Igual que Requests | Sí, en el mismo comando | Ejecutada | Confirma los accesos con la biblioteca estándar | La misma limitación de clave de F05; no se midió rendimiento sostenido | Alternativa válida; no se cambió el cliente del pipeline porque ambos resolvieron la prueba |
+| Catálogo y contrato | pandas | El mismo Excel final | BSD-3-Clause | Archivo local | Sí, en el mismo comando | Ejecutada | Seis fuentes y 28 campos, coincidentes con openpyxl y el lago | El lector tabular no se usa para editar estilos del libro | Sí; alimenta el generador existente sin introducir otro lector en producción |
+| Catálogo y contrato | openpyxl | El mismo Excel final | MIT | Archivo local | Sí, en el mismo comando | Ejecutada | Lectura independiente del catálogo y diccionario; mismo resultado | No se necesitó su capacidad de edición de Excel para generar la web | Se conserva para contraste; pandas sigue siendo el lector del pipeline |
+| Preparación y consulta del lago | pandas | Los mismos seis CSV y áreas de F01 | BSD-3-Clause | Memoria local | Sí, en el mismo comando | Ejecutada | Recalcula cuatro indicadores por 18 distritos: 72 valores, iguales a SQL y al resultado publicado | Este ensayo no prueba la ingesta cruda ni el desempeño a gran escala | Sí; permite conservar la integración con GeoPandas y el código existente |
+| Preparación y consulta del lago | DuckDB | Los mismos CSV y áreas | MIT | Base temporal en memoria, sin servidor | Sí, en el mismo comando | Ejecutada | Conteos, agrupaciones, medianas y tasas equivalentes mediante SQL | El primer ensayo dejó un resultado SQL sin consumir; se corrigió el uso del cliente y se repitió | Alternativa SQL válida; queda como verificación independiente, no reemplaza el pipeline |
+| Verificación y protección del contrato web | Python, comprobaciones explícitas | El GeoJSON real y ocho alteraciones controladas en memoria | PSF-2.0 | Memoria local | Sí, en el mismo comando | Ejecutada | Acepta el archivo real y rechaza los ocho casos inválidos, incluido un campo no publicable en el segundo distrito | La validación no demuestra anonimato universal | Sí; los controles numéricos y de privacidad existentes siguen siendo los del pipeline |
+| Verificación y protección del contrato web | jsonschema | Exactamente los mismos nueve casos | MIT | Memoria local | Sí, en el mismo comando | Ejecutada | Mismos nueve resultados mediante un contrato declarativo guardado como evidencia | No recalcula por sí solo los indicadores desde los CSV | Complemento experimental; no se presenta como sustituto de la verificación numérica |
+| Vistas y publicación | HTML/JS + Leaflet | Los tres JSON/GeoJSON agregados de `docs/datos/` | Leaflet BSD-2-Clause | Archivos estáticos en GitHub y Vercel | Sí: servidor HTTP local; despliegue desde GitHub | Probada en navegador | 18 polígonos, selección de indicador, ficha por clic y F05 pública; ancho móvil de 390 px sin desbordamiento | La web estática necesita reconstruir sus archivos para actualizar los datos | Sí; se ratifica después de esta comparación: conserva el sitio ya publicado y la ficha conectada al mapa |
+| Vistas y publicación | Streamlit 1.66.1 | Los mismos tres archivos agregados; servidor Python local | Apache-2.0; Leaflet BSD-2-Clause | Los mismos archivos locales; no se subieron a un servicio nuevo | Sí: `python -m streamlit run exploracion/vistas_streamlit.py` | Probada con AppTest y navegador | 108 combinaciones correctas; mapa de 18 polígonos, selector de distrito y F05 pública; 390 px sin desbordamiento | En este prototipo el clic del mapa abre un rótulo y no cambia la ficha Python; no se probó despliegue en su nube | No reemplaza la web; queda como alternativa real y reproducible |
+
+La muestra HTTP de F02 mantiene sus filtros de año y categorías y añade `LIMIT 25`; el límite se aplica a ambos clientes y no altera la consulta de ingesta. Los conteos y 72 valores se contrastan con todos los registros del lago guardado.
+
+El primer intento también se conserva: [resultado](evidencia/exploracion_2026-11-03/intento_01.json) y [salida](evidencia/exploracion_2026-11-03/intento_01.txt). Falló el uso inicial del cliente DuckDB por dejar un resultado sin consumir; la muestra de F01 también terminó en un error de conexión en ambos clientes. Se corrigió el consumo del resultado SQL y se repitió el acceso HTTP sin la cabecera Range, leyendo el prefijo del flujo. No se determinó la causa del fallo de conexión ni se afirma que retirar esa cabecera lo explique. La ejecución final quedó correcta. También se conserva [otro intento con HTTP 400 en F02](evidencia/exploracion_2026-11-03/intento_03.json); la misma consulta anual respondió 200 al volver a comprobarla. La comparación final de acceso usa la muestra acotada, no acredita la consulta anual completa. En el registro inicial de F01, `prefijo_igual` no permite concluir igualdad porque ambos clientes fallaron y no hubo hash; ese caso quedó corregido en el script final.
 
 ## Protección
 
-**Nivel:** solo agregados.
+**Nivel de la web:** solo agregados por distrito. **Alcance del repositorio público:** también contiene filas de solicitudes y siniestros sin identificadores directos. Esos registros no se describen como agregados ni como una garantía de anonimato.
 
 Desde el inicio decidimos que la aplicación debía permitir consultar información territorial sin exponer registros que pudieran identificar directamente a una persona. Esto fue especialmente importante para los datos de Philly311, porque las solicitudes pueden contener información sobre lugares y situaciones particulares.
 
 - **Qué protegemos, y de quién:** protegemos la información que podría facilitar la identificación de personas a partir de los registros originales. La aplicación está pensada para mostrar indicadores por distrito, no para consultar solicitudes individuales.
-- **Pruebas de terminal o de ventana privada:** ejecutamos `verificar_privacidad.py` sobre los seis archivos publicados:
-  - `demografia_distritos.csv`
-  - `indicadores_distrito.csv`
-  - `paraderos_septa.csv`
-  - `reportes_viales_311.csv`
-  - `siniestralidad_vial.csv`
-  - `tracts_distritos.csv`
-
-  La ejecución terminó con el mensaje:
-
-  `OK: no hay coordenadas, direcciones, texto libre ni IDs en los archivos publicados`
-
-  Esta comprobación permite verificar que esos campos no aparecen en los archivos revisados. Sin embargo, no significa que cualquier posibilidad de inferencia o reidentificación haya desaparecido. La agregación reduce la exposición de información, pero no elimina todos los riesgos posibles.
-- **Revisión de secretos en el historial:** la clave `CENSUS_API_KEY` se mantiene en el archivo local `.env`, que está incluido en `.gitignore`. Para que otra persona pueda configurar el proyecto se dejó `.env.ejemplo` como plantilla, sin incluir la clave real. También revisamos que la clave no quedara expuesta en los archivos publicados ni en el repositorio.
-
-No se conserva evidencia reproducible del supuesto cruce con OPA. Se retira esa afirmación y no se presenta como una prueba realizada.
+- **Controles ejecutados:** `verificar_privacidad.py` revisa seis CSV y dos GeoJSON; `verificar_entrega.py` contrasta claves, periodos e indicadores. La salida actual del control de privacidad dice: `OK: no se encontraron columnas de la lista prohibida`. Permite la geometría territorial y los IDs públicos de distritos, tracts y paraderos; su alcance no es demostrar anonimato universal. La salida completa está en la evidencia de exploración.
+- **Revisión de secretos en el historial:** para volver a descargar F05, la clave `CENSUS_API_KEY` debe configurarse en un archivo local `.env`, que está incluido en `.gitignore`. Para que otra persona pueda configurar el proyecto se dejó `.env.ejemplo` como plantilla, sin incluir la clave real. También revisamos que la clave no quedara expuesta en los archivos publicados ni en el repositorio.
 
 ## Herramienta elegida para las vistas
 
@@ -97,7 +92,7 @@ No se conserva evidencia reproducible del supuesto cruce con OPA. Se retira esa 
 - **Qué teníamos que proteger:** los archivos publicados no debían exponer los registros originales ni los campos que habíamos decidido excluir por privacidad.
 - **Por qué esta herramienta cumple las dos cosas, y cuál descartamos por poco:** finalmente utilizamos HTML, JavaScript nativo y Leaflet.js para construir una aplicación estática. La desplegamos en Vercel y dejamos la interfaz separada de los procesos de ingesta y transformación. Esto nos permitió publicar las vistas sin mantener un servidor Python activo para atender las consultas de la aplicación.
 
-El README anterior menciona una alternativa Streamlit, pero el historial disponible no contiene prototipo, comandos de ejecución ni capturas. El usuario confirmó que no conserva capturas. Por eso no se afirma una prueba comparada completada. Ver `evidencia/comparacion_visualizacion.md`.
+La comparación real con Streamlit queda en [evidencia/comparacion_visualizacion.md](evidencia/comparacion_visualizacion.md), con prototipo, comandos, resultados y capturas. Ambas vistas leen los mismos tres archivos agregados y usan Leaflet/OpenStreetMap. Se compara el marco de publicación y su interacción, no dos motores cartográficos. Streamlit funcionó; se mantiene HTML/JS porque preserva la publicación estática y la ficha enlazada al clic del mapa. Esta es una decisión ratificada tras pruebas nuevas, no una reconstrucción de una prueba histórica sin evidencia.
 
 ## Nuestra posición
 
@@ -109,7 +104,7 @@ La arquitectura por capas también responde a esa necesidad. No queríamos mezcl
 
 En el análisis encontramos que la relación entre los reportes viales por habitante y los accidentes graves por habitante fue muy baja (Spearman ρ = -0.105; p = 0.677). Para la relación entre ingreso mediano y tiempos de respuesta de Philly311 obtuvimos ρ = 0.191 y p = 0.447. En ninguno de los dos casos encontramos evidencia estadística suficiente para afirmar que existe una asociación. Esto no demuestra que no haya ninguna relación; significa que, con los datos y el alcance de este análisis, no podemos sostener esa conclusión.
 
-También encontramos diferencias importantes en la densidad de paraderos: Center City (CTR) presentó el valor más alto, con 48.1 paraderos por km², mientras que Lower South (LS) tuvo el más bajo, con 2.5 paraderos por km².
+También encontramos diferencias importantes en la densidad de paraderos: Central (CTR) presentó el valor más alto, con 48.1 paraderos por km², mientras que Lower South (LS) tuvo el más bajo, con 2.5 paraderos por km².
 
 Estos resultados deben leerse teniendo en cuenta que trabajamos con 18 distritos y que las tasas por habitante no reflejan necesariamente cuántos vehículos circulan por cada zona. Por ejemplo, Lower South tiene áreas industriales y portuarias, por lo que su población residente puede no representar toda la actividad que ocurre allí. Además, el ingreso mediano funciona como una aproximación de las condiciones económicas del distrito, no como una descripción de cada uno de sus habitantes.
 
@@ -135,7 +130,8 @@ Estos cinco registros proceden de la bitácora existente del Excel. Las pruebas 
 
 | Corrección de esta entrega | Herramienta | Encargo | Resultado | Verificación |
 |---|---|---|---|---|
-| Revisión documental y técnica, 2026-11-02 | Codex | Aplicar correcciones con evidencia existente | Ajustes de README, Excel, periodos y controles | Alcance y resultados en `evidencia/revision_entrega2.md`; no atribuye al equipo pruebas no conservadas |
+| Revisión documental y técnica, 2026-11-02 | Codex | Aplicar correcciones con evidencia existente | Ajustes de README, Excel, periodos y controles | Alcance actualizado en `evidencia/revision_entrega2.md`; se distinguen los registros históricos de las pruebas nuevas |
+| Comparación nueva y cierre documental, 2026-11-03 | Codex | Crear y ejecutar alternativas con datos reales, corregir F05 y la documentación | Clientes HTTP, lectura doble del Excel, consultas pandas/DuckDB, contrato Python/JSON Schema y prototipo Streamlit | 72 valores contrastados, nueve casos de contrato y 108 combinaciones de Streamlit; primer intento fallido conservado y corregido. El navegador confirmó mapas, fuentes y tamaños móviles |
 
 ---
 
@@ -225,3 +221,19 @@ La versión se comprobó en navegador con anchos de 320, 390, 768 y 1440 px:
 sin desbordamiento de la página, mapa base cargado y atribuido, 18 distritos,
 selector de indicadores, ficha de distrito y apertura/cierre de Fuente operativos.
 La prueba de ancho móvil es una emulación de navegador, no una prueba en un teléfono físico.
+
+
+## Calidad, fechas y límites de esta validación
+
+| Fuente | Filas conservadas | Sin distrito | Filas usadas en los cálculos por distrito |
+|---|---:|---:|---:|
+| F02 · solicitudes | 181.699 | 136 | 181.563 |
+| F03 · siniestros | 36.303 | 451 | 35.852 |
+
+Las filas sin distrito se conservan en las tablas del lago, pero no se asignan artificialmente y no entran en los numeradores territoriales. El conteo total del lago y la suma de los conteos por distrito no son la misma población de registros.
+
+La cohorte de solicitudes se selecciona por radicación UTC en 2020–2024. Sus cierres pueden ser posteriores: el máximo observado en la instantánea es 2026-10-29. Los siniestros se seleccionan por año de ocurrencia en 2020–2024. SEPTA es el feed descargado el 2026-11-02. Por tanto, no se afirma que todo dato de 2025 o 2026 quede fuera.
+
+F05 conserva su endpoint de ingesta en el Excel y el metadato `url`; la interfaz utiliza `url_publica`, que abre [la ficha de ACS](https://api.census.gov/data/2024/acs/acs5.html) sin clave. La clave gratuita solo es necesaria para volver a descargar los datos del Census y nunca se publica.
+
+Las fechas de descarga de F01–F06 siguen siendo las del registro original de ingesta del 2026-11-02. Las comparaciones de esta sesión y sus muestras HTTP se registran aparte: no reemplazan esas fechas ni demuestran una nueva ingesta integral. Para repetir toda la ingesta desde cero todavía hace falta configurar una clave propia del Census. Las pruebas móviles realizadas son emulación de navegador, no uso de un teléfono físico.

@@ -1,0 +1,61 @@
+{
+  "fecha_sesion": "2026-11-03",
+  "escritorio": {
+    "streamlit": {
+      "poligonos": 18,
+      "valor_visible": "83,860",
+      "f05": "https://api.census.gov/data/2024/acs/acs5.html",
+      "popup": "Central (CTR): 140361",
+      "ficha_sigue_en_cne": true,
+      "ancho": 1440
+    },
+    "html": {
+      "ancho": 1280,
+      "ancho_documento": 1280,
+      "ficha": "Central Northeast (CNE)",
+      "indicador": "poblacion_total",
+      "poligonos": 18,
+      "texto_ficha": "Central Northeast (CNE)Reportes viales al 311 PROXYpor 1.000 hab. al año\n      18,8 FuenteSiniestros graves PROXYpor 1.000 hab. al año\n      0,21 FuenteParaderos de SEPTA por km²\n      16,3 FuenteDías para atender una solicitud vial días (mediana)\n      8 FuenteIngreso del hogar PROXYUSD al año\n      63.014 FuentePoblación PROXYhabitantes\n      83.860 FuenteÁreakm²21,2 Fuente"
+    }
+  },
+  "movil": {
+    "html": {
+      "ancho": 390,
+      "ancho_documento": 390,
+      "f05": "https://api.census.gov/data/2024/acs/acs5.html",
+      "ficha": "Central Northeast (CNE)",
+      "poligonos": 18,
+      "ventana_fuente_ancho": 352
+    },
+    "streamlit": {
+      "ancho": 390,
+      "ancho_documento": 390,
+      "ancho_iframe": 358,
+      "poligonos": 18,
+      "valor_visible": "83,860",
+      "f05": "https://api.census.gov/data/2024/acs/acs5.html"
+    }
+  },
+  "errores_consola": {
+    "html": [],
+    "streamlit": []
+  },
+  "capturas": {
+    "prueba_html_movil.jpg": {
+      "ancho": 390,
+      "alto": 844
+    },
+    "prueba_html_escritorio.jpg": {
+      "ancho": 1280,
+      "alto": 720
+    },
+    "prueba_streamlit_movil.jpg": {
+      "ancho": 390,
+      "alto": 844
+    },
+    "prueba_streamlit_escritorio.jpg": {
+      "ancho": 1440,
+      "alto": 1000
+    }
+  }
+}

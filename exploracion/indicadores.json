@@ -1,0 +1,72 @@
+{
+  "reportes_viales_x1000hab": {
+    "nombre": "Reportes viales al 311",
+    "unidad": "por 1.000 hab. al año",
+    "decimales": 1,
+    "proxy": true,
+    "fuentes": [
+      "F02",
+      "F05",
+      "F06",
+      "F01"
+    ],
+    "calculo": "Solicitudes viales al 311 de 2020 a 2024 en el distrito, divididas por 5 años y por la población, por 1.000."
+  },
+  "siniestros_graves_x1000hab": {
+    "nombre": "Siniestros graves",
+    "unidad": "por 1.000 hab. al año",
+    "decimales": 2,
+    "proxy": true,
+    "fuentes": [
+      "F03",
+      "F05",
+      "F06",
+      "F01"
+    ],
+    "calculo": "Siniestros con al menos un muerto o herido grave de 2020 a 2024, divididos por 5 años y por la población, por 1.000."
+  },
+  "paraderos_x_km2": {
+    "nombre": "Paraderos de SEPTA",
+    "unidad": "por km²",
+    "decimales": 1,
+    "proxy": false,
+    "fuentes": [
+      "F04",
+      "F01"
+    ],
+    "calculo": "Paraderos del feed descargado el 2026-11-02 dentro del distrito, divididos por su área en km². No representa la red histórica de 2020–2024."
+  },
+  "mediana_dias_atencion": {
+    "nombre": "Días para atender una solicitud vial",
+    "unidad": "días (mediana)",
+    "decimales": 0,
+    "proxy": false,
+    "fuentes": [
+      "F02",
+      "F01"
+    ],
+    "calculo": "Mediana de días entre reporte y cierre de solicitudes radicadas en 2020–2024. Los cierres pueden ser posteriores: la instantánea contiene cierres hasta 2026-10-29."
+  },
+  "proxy_ingreso_mediano_hogar": {
+    "nombre": "Ingreso del hogar",
+    "unidad": "USD al año",
+    "decimales": 0,
+    "proxy": true,
+    "fuentes": [
+      "F05",
+      "F06"
+    ],
+    "calculo": "Promedio de los ingresos medianos de los census tracts del distrito, ponderado por población. No es la mediana real del distrito."
+  },
+  "poblacion_total": {
+    "nombre": "Población",
+    "unidad": "habitantes",
+    "decimales": 0,
+    "proxy": true,
+    "fuentes": [
+      "F05",
+      "F06"
+    ],
+    "calculo": "Suma de la población de los census tracts asignados al distrito por su punto interno."
+  }
+}

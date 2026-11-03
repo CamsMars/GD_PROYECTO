@@ -71,3 +71,6 @@ URL_F05 = ("https://api.census.gov/data/2024/acs/acs5"
            "?get=NAME,B01003_001E,B19013_001E&for=tract:*&in=state:42%20county:101")
 
 URL_F06 = "https://www2.census.gov/geo/tiger/TIGER2024/TRACT/tl_2024_42_tract.zip"
+
+# Ficha pública para la interfaz; el endpoint de ingesta sigue requiriendo clave.
+URL_F05_FICHA = "https://api.census.gov/data/2024/acs/acs5.html"

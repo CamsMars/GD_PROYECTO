@@ -1,0 +1,419 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "type",
+    "features"
+  ],
+  "properties": {
+    "type": {
+      "const": "FeatureCollection"
+    },
+    "name": {
+      "type": "string"
+    },
+    "crs": {
+      "type": "object"
+    },
+    "xy_coordinate_resolution": {
+      "type": "number"
+    },
+    "features": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "properties",
+          "geometry"
+        ],
+        "properties": {
+          "type": {
+            "const": "Feature"
+          },
+          "properties": {
+            "type": "object",
+            "required": [
+              "distrito_id",
+              "nombre_distrito",
+              "area_km2",
+              "poblacion_total",
+              "proxy_ingreso_mediano_hogar",
+              "reportes_viales_x1000hab",
+              "siniestros_graves_x1000hab",
+              "paraderos_x_km2",
+              "mediana_dias_atencion"
+            ],
+            "properties": {
+              "distrito_id": {
+                "enum": [
+                  "RW",
+                  "NDEL",
+                  "LFNE",
+                  "CTR",
+                  "USW",
+                  "UNW",
+                  "UNO",
+                  "STH",
+                  "NOR",
+                  "LS",
+                  "LNE",
+                  "CNE",
+                  "WST",
+                  "UFNE",
+                  "LSW",
+                  "WP",
+                  "LNO",
+                  "LNW"
+                ]
+              },
+              "nombre_distrito": {
+                "type": "string",
+                "minLength": 1
+              },
+              "area_km2": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "poblacion_total": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "proxy_ingreso_mediano_hogar": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "reportes_viales_x1000hab": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "siniestros_graves_x1000hab": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "paraderos_x_km2": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "mediana_dias_atencion": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          },
+          "geometry": {
+            "type": "object",
+            "required": [
+              "type",
+              "coordinates"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "Polygon",
+                  "MultiPolygon"
+                ]
+              },
+              "coordinates": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "RW"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "NDEL"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "LFNE"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "CTR"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "USW"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "UNW"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "UNO"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "STH"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "NOR"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "LS"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "LNE"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "CNE"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "WST"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "UFNE"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "LSW"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "WP"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "LNO"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "distrito_id": {
+                    "const": "LNW"
+                  }
+                }
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,1127 @@
+{
+  "fecha_sesion": "2026-11-03",
+  "ejecutado_utc": "2026-11-03T05:51:15.610268+00:00",
+  "base_git": "1628270ae131f154c1d4d4492a9e9703fa17805a",
+  "sistema": "Darwin",
+  "arquitectura": "arm64",
+  "python": "3.12.14",
+  "versiones": {
+    "pandas": "3.1.0",
+    "openpyxl": "3.1.5",
+    "requests": "2.34.2",
+    "duckdb": "2.0.0",
+    "jsonschema": "4.26.0",
+    "streamlit": "1.66.1",
+    "geopandas": "1.2.0",
+    "shapely": "2.2.0",
+    "scipy": "1.18.1"
+  },
+  "sha256_entradas": {
+    "diccionario/Diccionario_datos.xlsx": "587af842e09a82da6b8a011326cf4a5d4902924eed4699fef4901907d35411a4",
+    "docs/datos/distritos.geojson": "64f097896eb03da8e32964c1c2e27dbee1032102952bc22db9f55301f43d229b",
+    "docs/datos/fuentes.json": "8bbad58f9343c872ccffc9925e78a5061ec158089f6a8d9685c3359da9a629f5",
+    "docs/datos/preguntas.json": "3e7f17cc4910f9268e76bb92019c4922f8694245c4bc648851160a1f38e4b616",
+    "exploracion/indicadores.json": "525bc3a6187958d69eb2ea06ec529639145971f2b85b765935b45c6422815831",
+    "lago/demografia_distritos.csv": "9584b0ca6b911b1586518994b96ed5fc5e3b1461cf24ad2e903d6109f7ed1229",
+    "lago/indicadores_distrito.csv": "ea0e22be3395d76481c65429e7576de4b859d22c4b18c733c5bd848f9cea10d6",
+    "lago/paraderos_septa.csv": "81b271c9b58b996a3f1dac079407f4f78a50172c110a09eaf785c16d36a59014",
+    "lago/reportes_viales_311.csv": "a9496511d394de844a40ff4927403aec75a4abb243c3cf8392d89ccc7056c485",
+    "lago/siniestralidad_vial.csv": "be193a8dfef3a386d1166686eb46097386feaf1daa154b83a6b541a68f7dde19",
+    "lago/territorio_distritos.geojson": "4a3b13e4982ec6ad762ea2de03d3922b92684d386b6c68c96e688f80372ec756",
+    "lago/tracts_distritos.csv": "a0c1c4556da2b4dd1ace96464685139e60c3729df4bbeddf25ec813621322c77"
+  },
+  "sha256_scripts": {
+    "exploracion/comparar.py": "8fdb2e45602a43f84fedf6683d57bd402d9e7867f17c935cd68991768754236e",
+    "exploracion/vistas_streamlit.py": "1b522b66ec99c25a80042347a58ab5f77b389511ca87423a85613f0dc6ae63e7"
+  },
+  "alcance": "Pruebas nuevas sobre las instantáneas existentes y muestras HTTP. No acreditan la descarga integral de las seis fuentes ni pruebas históricas anteriores.",
+  "pruebas": {
+    "catalogo": {
+      "cumple": true,
+      "lectores": [
+        "pandas",
+        "openpyxl"
+      ],
+      "fuentes": 6,
+      "campos": 28,
+      "metadatos_iguales": true,
+      "campos_sin_documentar": 0,
+      "sha256_libro": "587af842e09a82da6b8a011326cf4a5d4902924eed4699fef4901907d35411a4"
+    },
+    "lago": {
+      "cumple": true,
+      "herramientas": [
+        "pandas",
+        "DuckDB"
+      ],
+      "filas": {
+        "reportes_viales_311": 181699,
+        "siniestralidad_vial": 36303,
+        "paraderos_septa": 7987,
+        "demografia_distritos": 18,
+        "tracts_distritos": 408,
+        "indicadores_distrito": 18
+      },
+      "distritos": 18,
+      "indicadores_comparados": 4,
+      "valores_contrastados": 72,
+      "sin_distrito": {
+        "reportes_viales_311": 136,
+        "siniestralidad_vial": 451
+      },
+      "coincide_con_publicado": true,
+      "resultado": [
+        {
+          "distrito_id": "CNE",
+          "reportes_viales_x1000hab": 18.777,
+          "siniestros_graves_x1000hab": 0.205,
+          "paraderos_x_km2": 16.261,
+          "mediana_dias_atencion": 8.0
+        },
+        {
+          "distrito_id": "CTR",
+          "reportes_viales_x1000hab": 33.984,
+          "siniestros_graves_x1000hab": 0.228,
+          "paraderos_x_km2": 48.116,
+          "mediana_dias_atencion": 15.0
+        },
+        {
+          "distrito_id": "LFNE",
+          "reportes_viales_x1000hab": 22.526,
+          "siniestros_graves_x1000hab": 0.193,
+          "paraderos_x_km2": 14.663,
+          "mediana_dias_atencion": 11.0
+        },
+        {
+          "distrito_id": "LNE",
+          "reportes_viales_x1000hab": 15.604,
+          "siniestros_graves_x1000hab": 0.24,
+          "paraderos_x_km2": 29.855,
+          "mediana_dias_atencion": 8.0
+        },
+        {
+          "distrito_id": "LNO",
+          "reportes_viales_x1000hab": 22.241,
+          "siniestros_graves_x1000hab": 0.396,
+          "paraderos_x_km2": 37.389,
+          "mediana_dias_atencion": 12.0
+        },
+        {
+          "distrito_id": "LNW",
+          "reportes_viales_x1000hab": 24.236,
+          "siniestros_graves_x1000hab": 0.136,
+          "paraderos_x_km2": 11.657,
+          "mediana_dias_atencion": 7.0
+        },
+        {
+          "distrito_id": "LS",
+          "reportes_viales_x1000hab": 31.097,
+          "siniestros_graves_x1000hab": 1.208,
+          "paraderos_x_km2": 2.514,
+          "mediana_dias_atencion": 15.0
+        },
+        {
+          "distrito_id": "LSW",
+          "reportes_viales_x1000hab": 21.17,
+          "siniestros_graves_x1000hab": 0.636,
+          "paraderos_x_km2": 11.867,
+          "mediana_dias_atencion": 13.0
+        },
+        {
+          "distrito_id": "NDEL",
+          "reportes_viales_x1000hab": 16.723,
+          "siniestros_graves_x1000hab": 0.241,
+          "paraderos_x_km2": 14.307,
+          "mediana_dias_atencion": 8.0
+        },
+        {
+          "distrito_id": "NOR",
+          "reportes_viales_x1000hab": 17.56,
+          "siniestros_graves_x1000hab": 0.673,
+          "paraderos_x_km2": 31.014,
+          "mediana_dias_atencion": 8.0
+        },
+        {
+          "distrito_id": "RW",
+          "reportes_viales_x1000hab": 33.073,
+          "siniestros_graves_x1000hab": 0.433,
+          "paraderos_x_km2": 16.192,
+          "mediana_dias_atencion": 15.0
+        },
+        {
+          "distrito_id": "STH",
+          "reportes_viales_x1000hab": 36.054,
+          "siniestros_graves_x1000hab": 0.13,
+          "paraderos_x_km2": 36.574,
+          "mediana_dias_atencion": 19.0
+        },
+        {
+          "distrito_id": "UFNE",
+          "reportes_viales_x1000hab": 22.427,
+          "siniestros_graves_x1000hab": 0.136,
+          "paraderos_x_km2": 13.631,
+          "mediana_dias_atencion": 12.0
+        },
+        {
+          "distrito_id": "UNO",
+          "reportes_viales_x1000hab": 16.394,
+          "siniestros_graves_x1000hab": 0.285,
+          "paraderos_x_km2": 33.631,
+          "mediana_dias_atencion": 6.0
+        },
+        {
+          "distrito_id": "UNW",
+          "reportes_viales_x1000hab": 20.365,
+          "siniestros_graves_x1000hab": 0.226,
+          "paraderos_x_km2": 18.911,
+          "mediana_dias_atencion": 5.0
+        },
+        {
+          "distrito_id": "USW",
+          "reportes_viales_x1000hab": 20.388,
+          "siniestros_graves_x1000hab": 0.288,
+          "paraderos_x_km2": 35.45,
+          "mediana_dias_atencion": 13.0
+        },
+        {
+          "distrito_id": "WP",
+          "reportes_viales_x1000hab": 24.644,
+          "siniestros_graves_x1000hab": 0.432,
+          "paraderos_x_km2": 17.003,
+          "mediana_dias_atencion": 9.0
+        },
+        {
+          "distrito_id": "WST",
+          "reportes_viales_x1000hab": 22.507,
+          "siniestros_graves_x1000hab": 0.257,
+          "paraderos_x_km2": 41.184,
+          "mediana_dias_atencion": 14.0
+        }
+      ]
+    },
+    "contrato_y_proteccion": {
+      "cumple": true,
+      "herramientas": [
+        "Python (contrato explícito)",
+        "jsonschema Draft 2020-12"
+      ],
+      "nota": "Las modificaciones de prueba se hicieron en memoria, con datos ficticios; no se cambiaron los archivos publicados.",
+      "casos": [
+        {
+          "caso": "archivo_real",
+          "esperado": true,
+          "python": true,
+          "jsonschema": true
+        },
+        {
+          "caso": "falta_un_distrito",
+          "esperado": false,
+          "python": false,
+          "jsonschema": false
+        },
+        {
+          "caso": "id_desconocido",
+          "esperado": false,
+          "python": false,
+          "jsonschema": false
+        },
+        {
+          "caso": "id_duplicado",
+          "esperado": false,
+          "python": false,
+          "jsonschema": false
+        },
+        {
+          "caso": "poblacion_negativa",
+          "esperado": false,
+          "python": false,
+          "jsonschema": false
+        },
+        {
+          "caso": "poblacion_como_texto",
+          "esperado": false,
+          "python": false,
+          "jsonschema": false
+        },
+        {
+          "caso": "falta_indicador",
+          "esperado": false,
+          "python": false,
+          "jsonschema": false
+        },
+        {
+          "caso": "campo_no_publicable_en_segundo_distrito",
+          "esperado": false,
+          "python": false,
+          "jsonschema": false
+        },
+        {
+          "caso": "geometria_de_punto",
+          "esperado": false,
+          "python": false,
+          "jsonschema": false
+        }
+      ]
+    },
+    "streamlit": {
+      "cumple": true,
+      "herramienta": "Streamlit AppTest",
+      "distritos": 18,
+      "indicadores": 6,
+      "combinaciones_comprobadas": 108,
+      "nota": "AppTest verifica el backend y los valores. El renderizado real del mapa se prueba aparte en navegador.",
+      "comprobaciones": [
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "RW",
+          "valor": 33.073,
+          "mostrado": "33.1"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "NDEL",
+          "valor": 16.723,
+          "mostrado": "16.7"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "LFNE",
+          "valor": 22.526,
+          "mostrado": "22.5"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "CTR",
+          "valor": 33.984,
+          "mostrado": "34.0"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "USW",
+          "valor": 20.388,
+          "mostrado": "20.4"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "UNW",
+          "valor": 20.365,
+          "mostrado": "20.4"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "UNO",
+          "valor": 16.394,
+          "mostrado": "16.4"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "STH",
+          "valor": 36.054,
+          "mostrado": "36.1"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "NOR",
+          "valor": 17.56,
+          "mostrado": "17.6"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "LS",
+          "valor": 31.097,
+          "mostrado": "31.1"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "LNE",
+          "valor": 15.604,
+          "mostrado": "15.6"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "CNE",
+          "valor": 18.777,
+          "mostrado": "18.8"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "WST",
+          "valor": 22.507,
+          "mostrado": "22.5"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "UFNE",
+          "valor": 22.427,
+          "mostrado": "22.4"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "LSW",
+          "valor": 21.17,
+          "mostrado": "21.2"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "WP",
+          "valor": 24.644,
+          "mostrado": "24.6"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "LNO",
+          "valor": 22.241,
+          "mostrado": "22.2"
+        },
+        {
+          "indicador": "reportes_viales_x1000hab",
+          "distrito": "LNW",
+          "valor": 24.236,
+          "mostrado": "24.2"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "RW",
+          "valor": 0.433,
+          "mostrado": "0.43"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "NDEL",
+          "valor": 0.241,
+          "mostrado": "0.24"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "LFNE",
+          "valor": 0.193,
+          "mostrado": "0.19"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "CTR",
+          "valor": 0.228,
+          "mostrado": "0.23"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "USW",
+          "valor": 0.288,
+          "mostrado": "0.29"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "UNW",
+          "valor": 0.226,
+          "mostrado": "0.23"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "UNO",
+          "valor": 0.285,
+          "mostrado": "0.28"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "STH",
+          "valor": 0.13,
+          "mostrado": "0.13"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "NOR",
+          "valor": 0.673,
+          "mostrado": "0.67"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "LS",
+          "valor": 1.208,
+          "mostrado": "1.21"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "LNE",
+          "valor": 0.24,
+          "mostrado": "0.24"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "CNE",
+          "valor": 0.205,
+          "mostrado": "0.20"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "WST",
+          "valor": 0.257,
+          "mostrado": "0.26"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "UFNE",
+          "valor": 0.136,
+          "mostrado": "0.14"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "LSW",
+          "valor": 0.636,
+          "mostrado": "0.64"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "WP",
+          "valor": 0.432,
+          "mostrado": "0.43"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "LNO",
+          "valor": 0.396,
+          "mostrado": "0.40"
+        },
+        {
+          "indicador": "siniestros_graves_x1000hab",
+          "distrito": "LNW",
+          "valor": 0.136,
+          "mostrado": "0.14"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "RW",
+          "valor": 16.192,
+          "mostrado": "16.2"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "NDEL",
+          "valor": 14.307,
+          "mostrado": "14.3"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "LFNE",
+          "valor": 14.663,
+          "mostrado": "14.7"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "CTR",
+          "valor": 48.116,
+          "mostrado": "48.1"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "USW",
+          "valor": 35.45,
+          "mostrado": "35.5"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "UNW",
+          "valor": 18.911,
+          "mostrado": "18.9"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "UNO",
+          "valor": 33.631,
+          "mostrado": "33.6"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "STH",
+          "valor": 36.574,
+          "mostrado": "36.6"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "NOR",
+          "valor": 31.014,
+          "mostrado": "31.0"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "LS",
+          "valor": 2.514,
+          "mostrado": "2.5"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "LNE",
+          "valor": 29.855,
+          "mostrado": "29.9"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "CNE",
+          "valor": 16.261,
+          "mostrado": "16.3"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "WST",
+          "valor": 41.184,
+          "mostrado": "41.2"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "UFNE",
+          "valor": 13.631,
+          "mostrado": "13.6"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "LSW",
+          "valor": 11.867,
+          "mostrado": "11.9"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "WP",
+          "valor": 17.003,
+          "mostrado": "17.0"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "LNO",
+          "valor": 37.389,
+          "mostrado": "37.4"
+        },
+        {
+          "indicador": "paraderos_x_km2",
+          "distrito": "LNW",
+          "valor": 11.657,
+          "mostrado": "11.7"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "RW",
+          "valor": 15.0,
+          "mostrado": "15"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "NDEL",
+          "valor": 8.0,
+          "mostrado": "8"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "LFNE",
+          "valor": 11.0,
+          "mostrado": "11"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "CTR",
+          "valor": 15.0,
+          "mostrado": "15"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "USW",
+          "valor": 13.0,
+          "mostrado": "13"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "UNW",
+          "valor": 5.0,
+          "mostrado": "5"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "UNO",
+          "valor": 6.0,
+          "mostrado": "6"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "STH",
+          "valor": 19.0,
+          "mostrado": "19"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "NOR",
+          "valor": 8.0,
+          "mostrado": "8"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "LS",
+          "valor": 15.0,
+          "mostrado": "15"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "LNE",
+          "valor": 8.0,
+          "mostrado": "8"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "CNE",
+          "valor": 8.0,
+          "mostrado": "8"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "WST",
+          "valor": 14.0,
+          "mostrado": "14"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "UFNE",
+          "valor": 12.0,
+          "mostrado": "12"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "LSW",
+          "valor": 13.0,
+          "mostrado": "13"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "WP",
+          "valor": 9.0,
+          "mostrado": "9"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "LNO",
+          "valor": 12.0,
+          "mostrado": "12"
+        },
+        {
+          "indicador": "mediana_dias_atencion",
+          "distrito": "LNW",
+          "valor": 7.0,
+          "mostrado": "7"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "RW",
+          "valor": 85439.59,
+          "mostrado": "85,440"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "NDEL",
+          "valor": 58173.2,
+          "mostrado": "58,173"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "LFNE",
+          "valor": 86489.1,
+          "mostrado": "86,489"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "CTR",
+          "valor": 109888.03,
+          "mostrado": "109,888"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "USW",
+          "valor": 46252.62,
+          "mostrado": "46,253"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "UNW",
+          "valor": 73809.73,
+          "mostrado": "73,810"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "UNO",
+          "valor": 58570.94,
+          "mostrado": "58,571"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "STH",
+          "valor": 81658.31,
+          "mostrado": "81,658"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "NOR",
+          "valor": 36687.48,
+          "mostrado": "36,687"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "LS",
+          "valor": 120560.0,
+          "mostrado": "120,560"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "LNE",
+          "valor": 51074.25,
+          "mostrado": "51,074"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "CNE",
+          "valor": 63014.08,
+          "mostrado": "63,014"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "WST",
+          "valor": 41547.75,
+          "mostrado": "41,548"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "UFNE",
+          "valor": 71819.75,
+          "mostrado": "71,820"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "LSW",
+          "valor": 45975.37,
+          "mostrado": "45,975"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "WP",
+          "valor": 62420.1,
+          "mostrado": "62,420"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "LNO",
+          "valor": 48558.62,
+          "mostrado": "48,559"
+        },
+        {
+          "indicador": "proxy_ingreso_mediano_hogar",
+          "distrito": "LNW",
+          "valor": 99982.04,
+          "mostrado": "99,982"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "RW",
+          "valor": 67360,
+          "mostrado": "67,360"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "NDEL",
+          "valor": 98069,
+          "mostrado": "98,069"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "LFNE",
+          "valor": 71615,
+          "mostrado": "71,615"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "CTR",
+          "valor": 140361,
+          "mostrado": "140,361"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "USW",
+          "valor": 82048,
+          "mostrado": "82,048"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "UNW",
+          "valor": 91924,
+          "mostrado": "91,924"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "UNO",
+          "valor": 146819,
+          "mostrado": "146,819"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "STH",
+          "valor": 132439,
+          "mostrado": "132,439"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "NOR",
+          "valor": 133177,
+          "mostrado": "133,177"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "LS",
+          "valor": 5962,
+          "mostrado": "5,962"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "LNE",
+          "valor": 101746,
+          "mostrado": "101,746"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "CNE",
+          "valor": 83860,
+          "mostrado": "83,860"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "WST",
+          "valor": 113438,
+          "mostrado": "113,438"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "UFNE",
+          "valor": 69086,
+          "mostrado": "69,086"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "LSW",
+          "valor": 41209,
+          "mostrado": "41,209"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "WP",
+          "valor": 43029,
+          "mostrado": "43,029"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "LNO",
+          "valor": 103042,
+          "mostrado": "103,042"
+        },
+        {
+          "indicador": "poblacion_total",
+          "distrito": "LNW",
+          "valor": 54522,
+          "mostrado": "54,522"
+        }
+      ]
+    },
+    "acceso_http": {
+      "cumple": true,
+      "alcance": "muestras HTTP; no ingesta completa ni nueva fecha de prueba de los datos",
+      "fuentes": [
+        {
+          "fuente": "F01",
+          "url_probada": "https://hub.arcgis.com/api/v3/datasets/0960ea0f38f44146bb562f2b212075aa_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+          "consulta_acotada_25_filas": false,
+          "resultado_esperado": "accesible",
+          "cumple": true,
+          "prefijo_igual": true,
+          "clientes": {
+            "requests": {
+              "http": 200,
+              "url_final": "https://hub.arcgis.com/api/v3/datasets/0960ea0f38f44146bb562f2b212075aa_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+              "tipo": "application/json",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "d1eb969952312125bf7f03558684430cc6e83b99edcc1134016b44898e6d9b10",
+              "falta_clave": false
+            },
+            "urllib": {
+              "http": 200,
+              "url_final": "https://hub.arcgis.com/api/v3/datasets/0960ea0f38f44146bb562f2b212075aa_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+              "tipo": "application/json",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "d1eb969952312125bf7f03558684430cc6e83b99edcc1134016b44898e6d9b10",
+              "falta_clave": false
+            }
+          }
+        },
+        {
+          "fuente": "F02",
+          "url_probada": "https://phl.carto.com/api/v2/sql?format=csv&filename=public_cases_fc&q=SELECT+service_request_id%2C+requested_datetime%2C+closed_datetime%2C+status%2C+service_name%2C+lat%2C+lon+FROM+public_cases_fc+WHERE+requested_datetime+%3E%3D+%272020-01-01%27+AND+requested_datetime+%3C+%272021-01-01%27+AND+service_name+IN+%28%27Street+Defect%27%2C%27Street+Paving%27%2C%27Cracked+Street%27%2C%27Traffic+Signal+Emergency%27%2C%27SIGNAL+REQUEST%27%2C%27Stop+Sign+Repair%27%2C%27Street+Light+Outage%27%29+LIMIT+25",
+          "consulta_acotada_25_filas": true,
+          "resultado_esperado": "accesible",
+          "cumple": true,
+          "prefijo_igual": true,
+          "clientes": {
+            "requests": {
+              "http": 200,
+              "url_final": "https://phl.carto.com/api/v2/sql?format=csv&filename=public_cases_fc&q=SELECT+service_request_id%2C+requested_datetime%2C+closed_datetime%2C+status%2C+service_name%2C+lat%2C+lon+FROM+public_cases_fc+WHERE+requested_datetime+%3E%3D+%272020-01-01%27+AND+requested_datetime+%3C+%272021-01-01%27+AND+service_name+IN+%28%27Street+Defect%27%2C%27Street+Paving%27%2C%27Cracked+Street%27%2C%27Traffic+Signal+Emergency%27%2C%27SIGNAL+REQUEST%27%2C%27Stop+Sign+Repair%27%2C%27Street+Light+Outage%27%29+LIMIT+25",
+              "tipo": "text/csv",
+              "bytes_muestra": 2743,
+              "sha256_muestra": "44d8bc2f272892f1ef68e77c47bf8f7193242d1e5984505b111f02618232b846",
+              "falta_clave": false
+            },
+            "urllib": {
+              "http": 200,
+              "url_final": "https://phl.carto.com/api/v2/sql?format=csv&filename=public_cases_fc&q=SELECT+service_request_id%2C+requested_datetime%2C+closed_datetime%2C+status%2C+service_name%2C+lat%2C+lon+FROM+public_cases_fc+WHERE+requested_datetime+%3E%3D+%272020-01-01%27+AND+requested_datetime+%3C+%272021-01-01%27+AND+service_name+IN+%28%27Street+Defect%27%2C%27Street+Paving%27%2C%27Cracked+Street%27%2C%27Traffic+Signal+Emergency%27%2C%27SIGNAL+REQUEST%27%2C%27Stop+Sign+Repair%27%2C%27Street+Light+Outage%27%29+LIMIT+25",
+              "tipo": "text/csv",
+              "bytes_muestra": 2743,
+              "sha256_muestra": "44d8bc2f272892f1ef68e77c47bf8f7193242d1e5984505b111f02618232b846",
+              "falta_clave": false
+            }
+          }
+        },
+        {
+          "fuente": "F03",
+          "url_probada": "https://hub.arcgis.com/api/v3/datasets/21154a8f1894449f839d2288726e9837_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+          "consulta_acotada_25_filas": false,
+          "resultado_esperado": "accesible",
+          "cumple": true,
+          "prefijo_igual": true,
+          "clientes": {
+            "requests": {
+              "http": 200,
+              "url_final": "https://hub.arcgis.com/api/v3/datasets/21154a8f1894449f839d2288726e9837_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+              "tipo": "application/json",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "099474a3733d97efb569e244734dfcc1851c60500658bc93940235185c894994",
+              "falta_clave": false
+            },
+            "urllib": {
+              "http": 200,
+              "url_final": "https://hub.arcgis.com/api/v3/datasets/21154a8f1894449f839d2288726e9837_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+              "tipo": "application/json",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "099474a3733d97efb569e244734dfcc1851c60500658bc93940235185c894994",
+              "falta_clave": false
+            }
+          }
+        },
+        {
+          "fuente": "F04",
+          "url_probada": "https://www3.septa.org/developer/gtfs_public.zip",
+          "consulta_acotada_25_filas": false,
+          "resultado_esperado": "accesible",
+          "cumple": true,
+          "prefijo_igual": true,
+          "clientes": {
+            "requests": {
+              "http": 200,
+              "url_final": "https://www3.septa.org/developer/gtfs_public.zip",
+              "tipo": "application/zip",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "4912baba1a69f044811bf450af589ec73b7c5a9b11fbed0da747debbb7a8a64e",
+              "falta_clave": false
+            },
+            "urllib": {
+              "http": 200,
+              "url_final": "https://www3.septa.org/developer/gtfs_public.zip",
+              "tipo": "application/zip",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "4912baba1a69f044811bf450af589ec73b7c5a9b11fbed0da747debbb7a8a64e",
+              "falta_clave": false
+            }
+          }
+        },
+        {
+          "fuente": "F05",
+          "url_probada": "https://api.census.gov/data/2024/acs/acs5?get=NAME,B01003_001E,B19013_001E&for=tract:*&in=state:42%20county:101",
+          "consulta_acotada_25_filas": false,
+          "resultado_esperado": "requiere_clave",
+          "cumple": true,
+          "prefijo_igual": true,
+          "clientes": {
+            "requests": {
+              "http": 200,
+              "url_final": "https://api.census.gov/data/missing_key.html",
+              "tipo": "text/html",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "4662b14d5ff962d17fc2e38405c06d26666ba0cf1b2bb84c46dc94665dff987d",
+              "falta_clave": true
+            },
+            "urllib": {
+              "http": 200,
+              "url_final": "https://api.census.gov/data/missing_key.html",
+              "tipo": "text/html",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "4662b14d5ff962d17fc2e38405c06d26666ba0cf1b2bb84c46dc94665dff987d",
+              "falta_clave": true
+            }
+          }
+        },
+        {
+          "fuente": "F06",
+          "url_probada": "https://www2.census.gov/geo/tiger/TIGER2024/TRACT/tl_2024_42_tract.zip",
+          "consulta_acotada_25_filas": false,
+          "resultado_esperado": "accesible",
+          "cumple": true,
+          "prefijo_igual": true,
+          "clientes": {
+            "requests": {
+              "http": 200,
+              "url_final": "https://www2.census.gov/geo/tiger/TIGER2024/TRACT/tl_2024_42_tract.zip",
+              "tipo": "application/zip",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "92de1114eb950e42fccc379c1ffbb4841351486c1d9558a80d0956ccb2cf9fb2",
+              "falta_clave": false
+            },
+            "urllib": {
+              "http": 200,
+              "url_final": "https://www2.census.gov/geo/tiger/TIGER2024/TRACT/tl_2024_42_tract.zip",
+              "tipo": "application/zip",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "92de1114eb950e42fccc379c1ffbb4841351486c1d9558a80d0956ccb2cf9fb2",
+              "falta_clave": false
+            }
+          }
+        },
+        {
+          "fuente": "F05_ficha_publica",
+          "url_probada": "https://api.census.gov/data/2024/acs/acs5.html",
+          "consulta_acotada_25_filas": false,
+          "resultado_esperado": "accesible",
+          "cumple": true,
+          "prefijo_igual": true,
+          "clientes": {
+            "requests": {
+              "http": 200,
+              "url_final": "https://api.census.gov/data/2024/acs/acs5.html",
+              "tipo": "text/html",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "ec57eebacea8c05ddc3c17d705e576d78cdc335ab327fa735f44ebce561ad3c0",
+              "falta_clave": false
+            },
+            "urllib": {
+              "http": 200,
+              "url_final": "https://api.census.gov/data/2024/acs/acs5.html",
+              "tipo": "text/html",
+              "bytes_muestra": 4096,
+              "sha256_muestra": "ec57eebacea8c05ddc3c17d705e576d78cdc335ab327fa735f44ebce561ad3c0",
+              "falta_clave": false
+            }
+          }
+        }
+      ]
+    }
+  },
+  "controles_del_proyecto": [
+    {
+      "comando": "python verificar_entrega.py",
+      "salida": "Nota temporal: 3 solicitudes seleccionadas desde 2020-01-01 UTC tienen fecha local 2019-12-31.\nOK: 18 distritos; 1,579,706 habitantes; 181,699 solicitudes; 36,303 siniestros; 7,987 paraderos\nOK: periodos, claves, duplicados de paraderos y cuatro indicadores recalculados para los 18 distritos\n",
+      "error": "",
+      "codigo": 0
+    },
+    {
+      "comando": "python verificar_privacidad.py",
+      "salida": "  revisado lago/demografia_distritos.csv (18 filas)\n  revisado lago/siniestralidad_vial.csv (36303 filas)\n  revisado lago/paraderos_septa.csv (7987 filas)\n  revisado lago/reportes_viales_311.csv (181699 filas)\n  revisado lago/indicadores_distrito.csv (18 filas)\n  revisado lago/tracts_distritos.csv (408 filas)\n  revisado lago/territorio_distritos.geojson (18 filas)\n  revisado docs/datos/distritos.geojson (18 filas)\n\nOK: no se encontraron columnas de la lista prohibida. La geometría territorial y los IDs de distrito, tract y paradero son públicos. Este control no garantiza anonimato.\n",
+      "error": "",
+      "codigo": 0
+    }
+  ]
+}

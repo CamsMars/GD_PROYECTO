@@ -42,7 +42,8 @@
     "periodo": "2020-2024",
     "actualizacion": "Anual",
     "url": "https://api.census.gov/data/2024/acs/acs5?get=NAME,B01003_001E,B19013_001E&for=tract:*&in=state:42%20county:101",
-    "fecha_prueba": "2026-11-02"
+    "fecha_prueba": "2026-11-02",
+    "url_publica": "https://api.census.gov/data/2024/acs/acs5.html"
   },
   "F06": {
     "nombre": "TIGER/Line Shapefiles 2024 · Census Tracts (Pensilvania)",
