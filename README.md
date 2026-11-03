@@ -33,7 +33,7 @@ Algunas de las adaptaciones más importantes fueron:
 
 El proceso de integración también tuvo intentos que no terminaron en resultados utilizables. Por ejemplo, intentamos incorporar la fuente F12, relacionada con información escolar, pero los tiempos de espera del servidor se repitieron y no encontramos condiciones de licencia suficientemente claras para continuar. Por eso decidimos no incluirla en el lago de datos.
 
-Las fuentes están documentadas en dos lugares: el catálogo de metadatos que genera `construir_lago.py`, ubicado en `docs/datos/fuentes.json`, y el archivo `diccionario/Diccionario_datos.xlsx`, específicamente en la hoja **1. Fuentes**, donde se encuentra el catálogo documental de las 13 fuentes revisadas.
+Las fuentes están documentadas en dos lugares: el catálogo de metadatos que genera `construir_lago.py`, ubicado en `docs/datos/fuentes.json`, y el archivo `diccionario/Diccionario_datos.xlsx`, específicamente en la hoja **1. Fuentes**, donde se encuentra el catálogo de las seis fuentes integradas; las candidatas y descartadas se conservan en `evidencia/fuentes_no_integradas.json`.
 
 También encontramos información que habría sido útil para ampliar el análisis, pero que no pudimos integrar. Un ejemplo es el volumen de tráfico medido mediante vehículos-kilómetro recorridos (VMT). Sin esa información, las tasas de accidentes por habitante no permiten distinguir completamente entre el efecto de la población residente y la cantidad de vehículos que circulan por cada distrito.
 
@@ -51,7 +51,7 @@ La posibilidad de utilizar cada fuente depende de las condiciones establecidas p
 | F06 · TIGER/Line | Dominio público federal de Estados Unidos (17 U.S.C. §105) | No aplica a los datos geográficos publicados | Integrada | Datos geográficos públicos |
 | F12 · Fuente escolar | Licencia no suficientemente clara | Información relacionada con instituciones educativas | Descartada | Problemas de disponibilidad y falta de claridad sobre las condiciones de uso |
 
-La licencia de los datos no debe confundirse con la de las herramientas utilizadas para construir el sistema. Para la interfaz usamos HTML, JavaScript nativo y Leaflet.js, esta última bajo licencia MIT. Durante el desarrollo también evaluamos Streamlit, que utiliza licencia Apache 2.0, pero finalmente no fue la herramienta elegida para la versión publicada.
+La licencia de los datos no debe confundirse con la de las herramientas utilizadas para construir el sistema. Para la interfaz usamos HTML, JavaScript nativo y Leaflet.js, esta última bajo licencia BSD-2-Clause ([texto oficial de Leaflet 1.9.4](https://github.com/Leaflet/Leaflet/blob/v1.9.4/LICENSE)). Durante el desarrollo también evaluamos Streamlit, que utiliza licencia Apache 2.0, pero finalmente no fue la herramienta elegida para la versión publicada.
 
 ## Bitácora de exploración
 
@@ -89,7 +89,7 @@ Desde el inicio decidimos que la aplicación debía permitir consultar informaci
   Esta comprobación permite verificar que esos campos no aparecen en los archivos revisados. Sin embargo, no significa que cualquier posibilidad de inferencia o reidentificación haya desaparecido. La agregación reduce la exposición de información, pero no elimina todos los riesgos posibles.
 - **Revisión de secretos en el historial:** la clave `CENSUS_API_KEY` se mantiene en el archivo local `.env`, que está incluido en `.gitignore`. Para que otra persona pueda configurar el proyecto se dejó `.env.ejemplo` como plantilla, sin incluir la clave real. También revisamos que la clave no quedara expuesta en los archivos publicados ni en el repositorio.
 
-Como parte de la revisión de privacidad, simulamos un intento de reidentificación mediante el cruce de fechas de solicitudes de Philly311 con registros de avalúos de propiedades (OPA). El intento no logró reconstruir la identidad de las personas porque en la capa Silver descartamos las coordenadas exactas, las direcciones postales y las descripciones de texto libre. Esta prueba nos permitió comprobar la utilidad de esas decisiones, aunque no debe interpretarse como una garantía absoluta de anonimato.
+No se conserva evidencia reproducible del supuesto cruce con OPA. Se retira esa afirmación y no se presenta como una prueba realizada.
 
 ## Herramienta elegida para las vistas
 
@@ -97,7 +97,7 @@ Como parte de la revisión de privacidad, simulamos un intento de reidentificaci
 - **Qué teníamos que proteger:** los archivos publicados no debían exponer los registros originales ni los campos que habíamos decidido excluir por privacidad.
 - **Por qué esta herramienta cumple las dos cosas, y cuál descartamos por poco:** finalmente utilizamos HTML, JavaScript nativo y Leaflet.js para construir una aplicación estática. La desplegamos en Vercel y dejamos la interfaz separada de los procesos de ingesta y transformación. Esto nos permitió publicar las vistas sin mantener un servidor Python activo para atender las consultas de la aplicación.
 
-  Antes habíamos trabajado con una alternativa basada en Streamlit. Sin embargo, decidimos cambiarla porque queríamos una interfaz estática y una separación más clara entre el procesamiento de datos y la presentación de resultados. El cambio también nos permitió evitar que la aplicación dependiera de un servidor Python en funcionamiento permanente.
+El README anterior menciona una alternativa Streamlit, pero el historial disponible no contiene prototipo, comandos de ejecución ni capturas. El usuario confirmó que no conserva capturas. Por eso no se afirma una prueba comparada completada. Ver `evidencia/comparacion_visualizacion.md`.
 
 ## Nuestra posición
 
@@ -117,7 +117,7 @@ Estos resultados deben leerse teniendo en cuenta que trabajamos con 18 distritos
 
 La seguridad no fue algo que agregáramos únicamente al final para cumplir con la entrega. Tuvo efecto en decisiones de diseño desde el momento en que seleccionamos qué información publicar. En lugar de exponer los registros originales, trabajamos con datos transformados y agregados, y desarrollamos un script para revisar que los archivos finales no conservaran determinados campos sensibles.
 
-La prueba de privacidad y el ejercicio de reidentificación nos ayudaron a revisar esas decisiones con más criterio. También entendimos que una validación automática tiene un alcance específico: puede detectar la presencia de ciertos campos, pero no reemplaza una evaluación completa de los riesgos de inferencia. Por eso, la protección del sistema depende tanto de las verificaciones técnicas como de las decisiones sobre qué datos conservar y cuáles publicar.
+La verificación automática de campos permite revisar una parte de esas decisiones. También entendimos que una validación automática tiene un alcance específico: puede detectar la presencia de ciertos campos, pero no reemplaza una evaluación completa de los riesgos de inferencia. Por eso, la protección del sistema depende tanto de las verificaciones técnicas como de las decisiones sobre qué datos conservar y cuáles publicar.
 
 ## Bitácora de IA
 
@@ -125,33 +125,17 @@ Durante el desarrollo, las herramientas de IA se utilizaron como apoyo y no como
 
 | Tramo | Herramienta | Qué le encargamos | Qué entregó | Qué le corregimos |
 |---|---|---|---|---|
-| Documentación | [Completar herramienta] | [Describir el apoyo solicitado] | [Describir el resultado utilizado] | [Indicar qué verificó o corrigió el equipo] |
-| Desarrollo | [Completar herramienta, si aplica] | [Describir la tarea] | [Describir el resultado] | [Indicar los ajustes realizados] |
-| Análisis | [Completar herramienta, si aplica] | [Describir la tarea] | [Describir el resultado] | [Indicar cómo se contrastó con los datos] |
+| Registro 1 del Excel | Gemini | Encontrar la API REST sin llave de la ciudad para acceder a solicitudes de atención ciudadana 311. | Recomendó la API Carto SQL de OpenDataPhilly (servicio correcto), pero con la tabla incidents_part1_part2, que es la de delitos y no la de Philly311. | Parcial. La IA acertó el servicio pero se equivocó en la tabla: el resultado parecía plausible y solo falló al probar la URL exacta («column requested_datetime does not exist»). La tabla correcta es public_cases_fc. Verificar cada URL, no solo el servicio. |
+| Registro 2 del Excel | Gemini | Buscar un dataset abierto con identidades y condenas de conductores infractores viales. | Proporcionó la ruta de API api.phila.gov/v1/court/dui_drivers.json | Inventado. La IA inventa endpoints verosímiles justo en los temas donde los datos personales no se publican en bloque: hay que probar cada URL antes de creerla. |
+| Registro 3 del Excel | Claude | Revisar el Excel fila por fila y verificar cada URL, licencia y nombre de campo contra los portales oficiales | Señaló que F02 consultaba la tabla de delitos en vez de public_cases_fc; que las URL /dataset/…/resource/… no existen en el OpenDataPhilly actual; licencias distintas a las publicadas (F03, F08, F04); campos de F01 y F03 con nombres inexistentes; que F07 trae nombres de propietarios y que la API del Census ahora pide llave | Parcial. Se confirmaron la tabla equivocada de F02, los campos reales de F01 y F03, la URL de SEPTA, los propietarios en F07, los 404 de las URL antiguas y que la API del Census exige llave. Pero la IA revisora también falló: dijo que la categoría de baches era «Pothole Repair» (en 2026 es «Street Defect») y cambió la URL de Indego, que sí funcionaba. Además, un enlace oficial (F12) no respondió desde nuestra red. Revisar a la IA con la misma disciplina que a la IA que busca. |
+| Registro 4 del Excel | Gemini | Encontrar una fuente abierta con población e ingreso por zona para Filadelfia | Propuso la API del American Community Survey 5 años (edición 2022) con las variables B01003_001E (población) y B19013_001E (ingreso mediano del hogar) por census tract, como API sin llave. | Parcial. La fuente y las variables eran correctas, pero el acceso «sin llave» ya no es válido y la edición estaba desactualizada (existía la 2020-2024). Lo que la IA afirma sobre cómo se accede a una API puede caducar: hay que probarlo el día de la entrega. Además, la licencia CC0 que tomamos de los metadatos no era la correcta: el profesor señaló que es dominio público de EE. UU. Un metadato automático tampoco reemplaza leer los términos de la fuente. |
+| Registro 5 del Excel | Claude | Escribir los scripts de ingesta F01-F06, la construcción de indicadores y la verificación de privacidad, aplicando las correcciones de la Entrega 1 | Entregó config.py, ingesta/f01…f06, construir_lago.py, verificar_privacidad.py, verificacion.sh y armar_lago.sh. Los probó solo con datos simulados porque desde su entorno no podía descargar las fuentes. | Parcial. El código funcionó con los datos reales, pero la IA solo lo había probado con datos simulados y la lista de categorías venía de la primera entrega sin revisar por año. Antes de confiar en un resultado hay que correrlo con los datos reales y comparar cifras de control con valores conocidos, como la población de la ciudad. |
 
-## Revisión cruzada
+Estos cinco registros proceden de la bitácora existente del Excel. Las pruebas de octubre son declaraciones del equipo: los archivos de evidencia citados allí no están en el repositorio actual. El registro de ingesta del 2 de noviembre sí conserva respuestas HTTP 200 y hashes para F01–F06.
 
-**Tres cifras auditadas por el grupo [nombre del grupo]:**
-
-Como controles del proyecto revisamos tres cifras que permiten comprobar si los datos se integraron de forma consistente:
-
-| Cifra | Resultado | Qué representa |
-|---|---:|---|
-| Población total | 1.579.706 habitantes | Población agregada a partir de 408 census tracts |
-| Paraderos SEPTA | 7.987 | Total de paraderos después de filtrar la cobertura metropolitana con los límites de los distritos F01 |
-| Solicitudes viales Philly311 | 181.699 casos | Solicitudes procesadas para el periodo 2020–2024 |
-
-**Ataque del grupo [nombre del grupo]:**
-
-Se realizó un intento de reidentificación cruzando fechas de solicitudes de Philly311 con registros de avalúos de propiedades (OPA). El objetivo era evaluar si la información publicada podía facilitar la identificación de una persona o de una solicitud específica. El intento no consiguió reconstruir la identidad porque en la capa Silver habíamos eliminado las coordenadas exactas, las direcciones postales y las descripciones de texto libre. Esta prueba respaldó la decisión de publicar únicamente información agregada, aunque no significa que todos los riesgos de inferencia estén eliminados.
-
-**Vueltas atrás en la ruta:**
-
-Uno de los cambios más importantes fue pasar de una primera propuesta basada en Streamlit a una interfaz estática desarrollada con HTML y JavaScript. Volvimos sobre esa decisión porque queríamos separar mejor el procesamiento de los datos de la aplicación que consulta los resultados. Con el cambio eliminamos la dependencia de un servidor Python activo para mostrar las vistas y dejamos la interfaz publicada en Vercel.
-
-También descartamos la fuente escolar F12 después de varios intentos de consulta que terminaron en tiempos de espera del servidor y de no encontrar condiciones de licencia suficientemente claras. En este caso preferimos dejar la fuente por fuera antes que integrarla sin poder garantizar que cumpliera las condiciones necesarias.
-
-[Completar con las correcciones realizadas después de la revisión cruzada y los cambios derivados de esa revisión.] 
+| Corrección de esta entrega | Herramienta | Encargo | Resultado | Verificación |
+|---|---|---|---|---|
+| Revisión documental y técnica, 2026-11-02 | Codex | Aplicar correcciones con evidencia existente | Ajustes de README, Excel, periodos y controles | Alcance y resultados en `evidencia/revision_entrega2.md`; no atribuye al equipo pruebas no conservadas |
 
 ---
 
@@ -168,20 +152,22 @@ Para ejecutar el proyecto en un entorno local:
 2. Entrar a la carpeta del proyecto:
 
    ```bash
-   cd GD_PROYECTO/lago-filadelfia
+   cd GD_PROYECTO
    ```
 
 3. Crear y activar un entorno virtual:
 
    ```bash
-   python -m venv venv
+   python -m venv .venv
    ```
 
    En Windows PowerShell:
 
    ```powershell
-   .\venv\Scripts\Activate.ps1
+   .\.venv\Scripts\Activate.ps1
    ```
+
+   En macOS/Linux: `source .venv/bin/activate`.
 
 4. Instalar las dependencias:
 
@@ -196,6 +182,7 @@ Para ejecutar el proyecto en un entorno local:
    ```bash
    bash verificacion.sh
    python armar_lago.py
+   python verificar_entrega.py
    ```
 
    En Windows, el comando `bash` requiere Git Bash o WSL.
@@ -210,3 +197,13 @@ Para ejecutar el proyecto en un entorno local:
    Luego abrir `http://localhost:8000` en el navegador.
 
 La aplicación publicada también se puede consultar en: https://gd-proyecto-v6.vercel.app.
+
+## Periodos y reproducibilidad
+
+F02 y F03 cubren 2020–2024; F05 es ACS 2020–2024. F04 es una instantánea del feed GTFS descargado el 2026-11-02, no una reconstrucción de paraderos de 2020–2024. Su calendario de vigencia no se conservó en la evidencia original. Una nueva descarga puede cambiar los conteos. Las fechas de prueba proceden de `evidencia/registro_ingesta.json`, y no de la fecha de reconstrucción.
+
+El repositorio público contiene tablas con filas de solicitudes y siniestros sin identificadores directos; la web publica agregados por distrito. La eliminación de campos directos no garantiza anonimato. No deben describirse todas las tablas del repositorio como agregadas.
+
+La selección de Philly311 se aplica a timestamps UTC de 2020–2024. Después se convierten las fechas a America/New_York: tres solicitudes quedan con fecha local 2019-12-31. Se conservan y se documentan, sin modificar artificialmente sus fechas. La cobertura no equivale exactamente a cinco años calendario locales.
+
+En F05 el Excel copia literalmente el enlace declarado en el campo `license` del metadato oficial de la API. La explicación de dominio público federal se conserva por separado. No son una cita literal y una interpretación jurídica intercambiables.

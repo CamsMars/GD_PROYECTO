@@ -236,3 +236,15 @@ footer {
 .leaflet-interactive:focus {
   outline: none;
 }
+
+/* Controles táctiles y lectura en pantallas estrechas */
+* { box-sizing: border-box; }
+button.btn-fuente, #cerrar-fuente { min-height: 44px; min-width: 44px; }
+dialog { max-height: 85dvh; overflow-y: auto; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .dato { flex-wrap: wrap; }
+  .dato .valor { white-space: normal; }
+  .barra .nombre { width: 90px; }
+  .barra .relleno { flex-shrink: 1; min-width: 0; }
+}
+.leaflet-interactive:focus-visible { outline: 3px solid #1f3b57; }

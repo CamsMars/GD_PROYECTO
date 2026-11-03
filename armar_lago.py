@@ -14,6 +14,7 @@ PASOS = [
     "ingesta/f04_septa.py",
     "construir_lago.py",
     "verificar_privacidad.py",
+    "verificar_entrega.py",
 ]
 
 for paso in PASOS:

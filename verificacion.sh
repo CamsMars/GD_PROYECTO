@@ -4,6 +4,8 @@
 # Uso: bash verificacion.sh
 
 cd "$(dirname "$0")"
+mkdir -p evidencia
+FALLOS=0
 if [ -f .env ]; then
   set -a; . ./.env; set +a
 fi
@@ -14,6 +16,9 @@ LLAVE="${CENSUS_API_KEY:-sin_llave}"
 probar () {
   resp=$(curl -s -L -o /dev/null -m 60 -r 0-2047 -w '%{http_code} %{url_effective}' "$3")
   codigo=${resp%% *}
+  if [[ "$1" =~ ^F0[1-6]$ && "$2" != "ACS sin llave" && "$codigo" != 200 && "$codigo" != 206 ]]; then
+    FALLOS=$((FALLOS + 1))
+  fi
   final=${resp#* }
   url=${3//$LLAVE/***}
   final=${final//$LLAVE/***}
@@ -33,6 +38,5 @@ if [ -n "${CENSUS_API_KEY:-}" ]; then
   probar F05 "ACS con llave" "https://api.census.gov/data/2024/acs/acs5?get=NAME&for=tract:000100&in=state:42%20county:101&key=${CENSUS_API_KEY}"
 fi
 probar F06 "TIGER tracts" "https://www2.census.gov/geo/tiger/TIGER2024/TRACT/tl_2024_42_tract.zip"
-probar F12 "School List (descartada)" "https://cdn.philasd.org/offices/performance/Open_Data/School_Information/School_List/2025-2026%20Master%20School%20List%20(20251001).csv"
-probar F13 "Endpoint inventado por la IA" "https://api.phila.gov/v1/court/dui_drivers.json"
 echo "Guardado en $SALIDA"
+exit "$((FALLOS > 0))"

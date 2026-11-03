@@ -49,8 +49,8 @@ def descargar(url, destino, fuente_id, timeout=300):
                 f.write(bloque)
                 h.update(bloque)
     except Exception as e:
-        anotar({"fuente": fuente_id, "url": ocultar_llave(url), "fecha": fecha, "resultado": f"error: {e}"})
-        raise
+        anotar({"fuente": fuente_id, "url": ocultar_llave(url), "fecha": fecha, "resultado": ocultar_llave(f"error: {e}")})
+        raise RuntimeError(ocultar_llave(str(e))) from None
 
     anotar({"fuente": fuente_id, "url": ocultar_llave(url), "fecha": fecha, "resultado": "HTTP 200",
             "bytes": destino.stat().st_size, "sha256": h.hexdigest()})

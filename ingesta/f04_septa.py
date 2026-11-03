@@ -1,6 +1,7 @@
 # SEPTA GTFS
 
 import io
+import json
 import sys
 import zipfile
 from pathlib import Path
@@ -26,6 +27,22 @@ def leer_paraderos(zip_principal, nombre, red):
 
 crudo = descargar(config.URL_F04, config.CRUDOS / "f04_gtfs_public.zip", "F04")
 with zipfile.ZipFile(crudo) as z:
+    calendarios = {}
+    for feed in ("google_bus.zip", "google_rail.zip"):
+        with zipfile.ZipFile(io.BytesIO(z.read(feed))) as interior:
+            calendario = {}
+            for archivo, columnas in (("calendar.txt", ["start_date", "end_date"]),
+                                      ("calendar_dates.txt", ["date"])):
+                if archivo in interior.namelist():
+                    tabla = pd.read_csv(interior.open(archivo), dtype=str)
+                    for columna in columnas:
+                        if columna in tabla and tabla[columna].notna().any():
+                            valores = tabla[columna].dropna()
+                            calendario[f"{archivo}:{columna}"] = {"min": valores.min(), "max": valores.max()}
+            calendarios[feed] = calendario
+    (config.EVIDENCIA / "septa_calendarios.json").write_text(
+        json.dumps({"nota": "Rangos declarados en el feed descargado; no prueban cobertura histórica 2020–2024",
+                    "feeds": calendarios}, ensure_ascii=False, indent=2), encoding="utf-8")
     df = pd.concat([leer_paraderos(z, "google_bus.zip", "bus"),
                     leer_paraderos(z, "google_rail.zip", "rail")], ignore_index=True)
 

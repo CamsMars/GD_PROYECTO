@@ -24,7 +24,7 @@ const INDICADORES = {
     decimales: 1,
     proxy: false,
     fuentes: ["F04", "F01"],
-    calculo: "Paraderos de bus, tranvía, metro y tren regional dentro del distrito, divididos por su área en km²."
+    calculo: "Paraderos del feed descargado el 2026-11-02 dentro del distrito, divididos por su área en km². No representa la red histórica de 2020–2024."
   },
   mediana_dias_atencion: {
     nombre: "Días para atender una solicitud vial",
@@ -79,6 +79,7 @@ function abrirFuente(datos) {
     const f = fuentes[id] || {};
     html += `<div class="bloque"><h4>${id} - ${f.nombre || ""}</h4>
       Publica: ${f.publica || "-"}<br>
+      ${f.url ? `<a href="${f.url}" target="_blank" rel="noopener noreferrer">Abrir fuente original</a><br>` : ""}
       Licencia: ${f.licencia || "-"}<br>
       Vigencia: ${f.periodo || "-"} (actualización ${(f.actualizacion || "-").toLowerCase()})<br>
       Fecha en que la probamos: ${f.fecha_prueba || "-"}</div>`;
@@ -211,7 +212,7 @@ function pintarPreguntas() {
   const p1 = preguntas.P1;
   document.getElementById("p1").innerHTML = `
     <h3>P1. ${p1.pregunta}</h3>
-    <p class="respuesta">No. Los distritos que más reportan daños viales no son los que tienen más siniestros graves.</p>
+    <p class="respuesta">No encontramos evidencia estadística suficiente de asociación entre las dos tasas.</p>
     <p>${textoRelacion(p1)} ${botonFuente(p1.fuentes, "Compara las dos tasas por 1.000 habitantes del mismo periodo, 2020-2024.")} <span class="proxy">PROXY</span></p>
     ${dispersion("reportes_viales_x1000hab", "siniestros_graves_x1000hab", "Reportes viales por 1.000 hab. al año", "Siniestros graves por 1.000 hab.")}
     <p class="nota">En rojo, Lower South (LS): tiene menos de 6.000 habitantes y por eso su tasa de siniestros sale muy alta.
@@ -236,7 +237,7 @@ function pintarPreguntas() {
   const p3 = preguntas.P3;
   document.getElementById("p3").innerHTML = `
     <h3>P3. ${p3.pregunta}</h3>
-    <p class="respuesta">No encontramos esa relación. Los distritos de menor ingreso no tardan más en ser atendidos.</p>
+    <p class="respuesta">No encontramos evidencia estadística suficiente para afirmar que los distritos de menor ingreso tardan más en ser atendidos.</p>
     <p>${textoRelacion(p3)} Una relación negativa habría indicado que a menor ingreso hay más días de espera;
       la que encontramos es débil y va en sentido contrario. ${botonFuente(p3.fuentes, "Compara el ingreso del hogar (PROXY) con la mediana de días de atención de las solicitudes viales cerradas, 2020-2024.")} <span class="proxy">PROXY</span></p>
     ${dispersion("proxy_ingreso_mediano_hogar", "mediana_dias_atencion", "Ingreso del hogar (USD al año, PROXY)", "Días de atención (mediana)")}`;
@@ -246,7 +247,7 @@ function pintarTablaFuentes() {
   let html = "";
   for (const id in fuentes) {
     const f = fuentes[id];
-    html += `<tr><td>${id}</td><td>${f.nombre}</td><td>${f.publica}</td><td>${f.licencia}</td><td>${f.periodo}</td><td>${f.fecha_prueba}</td></tr>`;
+    html += `<tr><td>${id}</td><td><a href="${f.url}" target="_blank" rel="noopener noreferrer">${f.nombre}</a></td><td>${f.publica}</td><td>${f.licencia}</td><td>${f.periodo}</td><td>${f.fecha_prueba}</td></tr>`;
   }
   document.querySelector("#tabla-fuentes tbody").innerHTML = html;
 }

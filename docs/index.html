@@ -11,7 +11,7 @@
 
 <header>
   <h1>Movilidad y vías en Filadelfia</h1>
-  <p class="sub">Indicadores por distrito de planeación (Planning Districts), 2020-2024</p>
+  <p class="sub">Indicadores por distrito: 311, siniestros y ACS 2020–2024; SEPTA: feed descargado el 2026-11-02</p>
   <p class="grupo">Camila Martínez, Miguel Gómez, Sebastián Castaño y David Restrepo<br>
     Tópicos de Sistemas de Información, Universidad EAFIT</p>
 </header>
@@ -32,7 +32,7 @@
 
   <section>
     <h2>Preguntas del sistema</h2>
-    <p class="nota">Todas las cifras usan el mismo periodo, 2020-2024, en el 311, los siniestros y el censo.
+    <p class="nota">El 311, los siniestros y el censo usan 2020–2024. SEPTA corresponde al feed descargado el 2026-11-02; no describe la red de 2020–2024.
       Con 18 distritos los resultados describen zonas, no personas, y una relación no prueba causa.</p>
 
     <article id="p1" class="pregunta"></article>
@@ -46,7 +46,7 @@
       <li><strong>Riesgo por volumen de tráfico.</strong> Las tasas son por habitante, no por vehículos que circulan.
         Para calcular siniestros por vehículo-kilómetro faltan los conteos de tráfico (PennDOT o DVRPC), que no integramos.</li>
       <li><strong>Seguridad vial cerca de colegios.</strong> No se puede responder: la lista de colegios (F12) no tiene
-        licencia abierta y su enlace no respondió.</li>
+        una licencia abierta confirmada y su enlace no respondió en la prueba documentada.</li>
       <li><strong>Causas.</strong> El sistema muestra si dos indicadores se mueven juntos entre distritos,
         pero no explica por qué.</li>
       <li><strong>Datos de 2025 y 2026.</strong> Quedan por fuera para mantener el mismo periodo del censo (ACS 2020-2024).</li>
@@ -55,7 +55,7 @@
 
   <section>
     <h2>Cómo protegemos a las personas</h2>
-    <p>Ninguna cifra de esta página identifica a nadie. Las solicitudes al 311 y los siniestros se ubicaron
+    <p>Esta página muestra datos agregados por distrito y excluye identificadores directos. Las solicitudes al 311 y los siniestros se ubicaron
       en su distrito y después se borraron las coordenadas, las direcciones, el texto libre y los números de registro.
       La consulta al 311 ni siquiera descarga direcciones ni comentarios. Aquí solo se publican totales por distrito.</p>
     <p><span class="proxy">PROXY</span> La población y el ingreso son aproximaciones: cada census tract se asignó
@@ -80,7 +80,7 @@
   <p>This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.</p>
 </footer>
 
-<dialog id="dialogo-fuente">
+<dialog id="dialogo-fuente" aria-label="Fuente y cálculo del indicador">
   <div id="contenido-fuente"></div>
   <button id="cerrar-fuente">Cerrar</button>
 </dialog>

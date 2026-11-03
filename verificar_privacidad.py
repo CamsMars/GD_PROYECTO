@@ -22,7 +22,7 @@ def leer_columnas(ruta):
         return list(df.columns), len(df)
     datos = json.loads(ruta.read_text(encoding="utf-8"))
     features = datos.get("features", [])
-    columnas = list(features[0]["properties"]) if features else []
+    columnas = sorted({c for f in features for c in f.get("properties", {})})
     return columnas, len(features)
 
 
@@ -46,4 +46,8 @@ if errores:
         print(" -", e)
     sys.exit(1)
 
-print("\nOK: no hay coordenadas, direcciones, texto libre ni IDs en los archivos publicados")
+permitidos = {"distritos.geojson", "fuentes.json", "preguntas.json"}
+extras = {p.name for p in config.WEB_DATOS.iterdir() if p.is_file()} - permitidos
+if extras:
+    sys.exit(f"ERROR: archivos web no previstos: {sorted(extras)}")
+print("\nOK: no se encontraron columnas de la lista prohibida. La geometría territorial y los IDs de distrito, tract y paradero son públicos. Este control no garantiza anonimato.")

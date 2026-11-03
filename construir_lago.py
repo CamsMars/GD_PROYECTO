@@ -66,7 +66,7 @@ nota = ("Con 18 distritos la relación describe zonas, no personas, y no prueba 
 
 preguntas = {
     "periodo": f"{config.ANIO_INICIO}-{config.ANIO_FIN}",
-    "generado": date.today().isoformat(),
+    "generado": __import__("datetime").datetime.now(__import__("zoneinfo").ZoneInfo("America/Bogota")).date().isoformat(),
     "P1": {"pregunta": "¿Los distritos con más reportes viales al 311 por cada 1.000 habitantes "
                        "tienen también más siniestros graves por cada 1.000 habitantes?",
            "fuentes": ["F02", "F03", "F05", "F06", "F01"],
@@ -94,10 +94,10 @@ catalogo = {}
 excel = next(config.RAIZ.glob("diccionario/*.xlsx"), None)
 if excel:
     hoja = pd.read_excel(excel, sheet_name="1. Fuentes", header=2, dtype=str)
-    for _, f in hoja.iloc[1:].iterrows():  # la primera fila es el ejemplo de Medellin
+    for _, f in hoja.iterrows():  # filas vacías se omiten por ID
         if isinstance(f.iloc[0], str) and f.iloc[0].startswith("F"):
             catalogo[f.iloc[0]] = {"nombre": f.iloc[1], "publica": f.iloc[2], "licencia": f.iloc[7],
-                                   "periodo": f.iloc[10], "actualizacion": f.iloc[11]}
+                                   "periodo": f.iloc[10], "actualizacion": f.iloc[11], "url": f.iloc[4].split("&key=")[0]}
 
 fuentes = {}
 for fid in ["F01", "F02", "F03", "F04", "F05", "F06"]:

@@ -5,14 +5,16 @@
     "licencia": "City of Philadelphia License",
     "periodo": "Vigente (límites Philadelphia2035)",
     "actualizacion": "Única vez",
+    "url": "https://hub.arcgis.com/api/v3/datasets/0960ea0f38f44146bb562f2b212075aa_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
     "fecha_prueba": "2026-11-02"
   },
   "F02": {
     "nombre": "311 Service and Information Requests",
     "publica": "Philly311 / City of Philadelphia",
     "licencia": "City of Philadelphia License",
-    "periodo": "2014-12-08 a la fecha (en el lago: 2020-01-01 a 2024-12-31)",
+    "periodo": "Selección UTC: 2020-01-01 a 2024-12-31; fechas convertidas a America/New_York (3 filas: 2019-12-31).",
     "actualizacion": "Diaria",
+    "url": "https://phl.carto.com/api/v2/sql?format=csv&filename=public_cases_fc&q=SELECT%20service_request_id%2C%20requested_datetime%2C%20closed_datetime%2C%20status%2C%20service_name%2C%20lat%2C%20lon%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E%3D%20%272020-01-01%27%20AND%20requested_datetime%20%3C%20%272021-01-01%27%20AND%20service_name%20IN%20%28%27Street%20Defect%27%2C%27Street%20Paving%27%2C%27Cracked%20Street%27%2C%27Traffic%20Signal%20Emergency%27%2C%27SIGNAL%20REQUEST%27%2C%27Stop%20Sign%20Repair%27%2C%27Street%20Light%20Outage%27%29",
     "fecha_prueba": "2026-11-02"
   },
   "F03": {
@@ -21,22 +23,25 @@
     "licencia": "City of Philadelphia License",
     "periodo": "2020-2024",
     "actualizacion": "Anual",
+    "url": "https://hub.arcgis.com/api/v3/datasets/21154a8f1894449f839d2288726e9837_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
     "fecha_prueba": "2026-11-02"
   },
   "F04": {
     "nombre": "SEPTA GTFS Developer Download",
     "publica": "SEPTA",
     "licencia": "SEPTA LICENSE AGREEMENT",
-    "periodo": "Vigente (feed actual)",
+    "periodo": "Feed descargado el 2026-11-02; no representa 2020–2024; calendario de vigencia no conservado",
     "actualizacion": "Trimestral",
+    "url": "https://www3.septa.org/developer/gtfs_public.zip",
     "fecha_prueba": "2026-11-02"
   },
   "F05": {
     "nombre": "American Community Survey 5-Year",
     "publica": "U.S. Census Bureau",
-    "licencia": "Dominio público de EE. UU. (obra del gobierno federal, 17 U.S.C. § 105). La fuente no publica texto de licencia.",
+    "licencia": "https://creativecommons.org/publicdomain/zero/1.0/",
     "periodo": "2020-2024",
     "actualizacion": "Anual",
+    "url": "https://api.census.gov/data/2024/acs/acs5?get=NAME,B01003_001E,B19013_001E&for=tract:*&in=state:42%20county:101",
     "fecha_prueba": "2026-11-02"
   },
   "F06": {
@@ -45,6 +50,7 @@
     "licencia": "The TIGER/Line Shapefile products are not copyrighted however TIGER/Line and Census TIGER are registered trademarks of the U.S. Census Bureau. These products are free to use in a product or publication, however acknowledgement must be given to the U.S. Census Bureau as the source.",
     "periodo": "Edición 2024 (límites de 2020)",
     "actualizacion": "Anual",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2024/TRACT/tl_2024_42_tract.zip",
     "fecha_prueba": "2026-11-02"
   }
 }
