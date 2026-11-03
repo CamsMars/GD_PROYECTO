@@ -1,51 +1,81 @@
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #222;
-  background: #f5f5f2;
-  line-height: 1.5;
+:root {
+  --ink: #172b4d;
+  --muted: #64748b;
+  --brand: #147d92;
+  --brand-dark: #0b5366;
+  --surface: #ffffff;
+  --canvas: #f3f7f8;
+  --line: #dbe6ea;
+  --warm: #f5b94c;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--canvas);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+::selection { background: #b8e4e8; color: var(--ink); }
+
 header {
-  background: #1f3b57;
   color: white;
-  padding: 20px 16px;
+  padding: clamp(32px, 7vw, 72px) 20px 56px;
+  background: radial-gradient(circle at 85% 15%, rgba(245,185,76,.25), transparent 28%), linear-gradient(135deg, #0b5366 0%, #147d92 58%, #42a6a6 100%);
 }
 
 header h1 {
-  margin: 0 0 4px;
-  font-size: 1.5rem;
+  max-width: 980px;
+  margin: 0 auto 8px;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
 }
 
-header .sub {
-  margin: 0;
-  opacity: 0.9;
+header .sub, header .grupo {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-header .grupo {
-  margin: 12px 0 0;
-  font-size: 0.85rem;
-  opacity: 0.85;
-}
+header .sub { margin-top: 0; font-size: 1.05rem; opacity: .92; }
+header .grupo { margin-top: 24px; font-size: .82rem; opacity: .78; }
 
 main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 16px;
+  max-width: 1020px;
+  margin: -28px auto 0;
+  padding: 0 20px 28px;
+  position: relative;
 }
 
 section {
-  background: white;
-  margin: 16px 0;
-  padding: 16px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+  background: var(--surface);
+  margin: 18px 0;
+  padding: clamp(20px, 3vw, 32px);
+  border-radius: 18px;
+  border: 1px solid rgba(219,230,234,.9);
+  box-shadow: 0 12px 32px rgba(23,43,77,.06);
 }
 
 h2 {
   margin-top: 0;
-  font-size: 1.2rem;
-  color: #1f3b57;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 38px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 99px;
+  background: var(--warm);
 }
 
 label {
@@ -56,14 +86,27 @@ label {
 
 select {
   width: 100%;
-  padding: 8px;
-  font-size: 1rem;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--ink);
+  background: #f8fbfc;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+select:focus, button:focus-visible, dialog:focus-visible {
+  outline: 3px solid rgba(245,185,76,.55);
+  outline-offset: 2px;
 }
 
 #mapa {
-  height: 420px;
-  margin-top: 12px;
-  border: 1px solid #ccc;
+  height: 460px;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
 }
 
 #leyenda {
